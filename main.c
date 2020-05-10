@@ -6,7 +6,7 @@
 #include "stm32f7xx_hal.h"
 #include "stm32f7xx_nucleo_144_BSP.h"
 
-int32_t main(void) {
+int main(void) {
 	uint32_t curr = 0;
 	board_init();
 
