@@ -35,3 +35,8 @@ clean:	## remove all generated file
 
 cmake-output: 	## run cmake with the requrired parameters
 	cmake -S. -Bbuild
+	$(MAKE) build
+
+flash:
+	cp ./build/stm_drone.bin ./stm_drone.bin
+	JLink -device STM32F767ZI -if SWD -speed 4000 -autoconnect 1 -CommanderScript ./j-link/flash.jlink

@@ -9,10 +9,10 @@ set(CMAKE_EXECUTABLE_SUFFIX ".elf")
 
 # Add directories of any header files which will be used in the project
 include_directories (
-                        ${CMAKE_CURRENT_LIST_DIR}/drivers/cmsis/arm
-                        ${CMAKE_CURRENT_LIST_DIR}/drivers/cmsis/device
-                        ${CMAKE_CURRENT_LIST_DIR}/drivers/hal/inc
-                        ${CMAKE_CURRENT_LIST_DIR}/inc
+                    ${CMAKE_CURRENT_LIST_DIR}/drivers/cmsis/arm
+                    ${CMAKE_CURRENT_LIST_DIR}/drivers/cmsis/device
+                    ${CMAKE_CURRENT_LIST_DIR}/drivers/hal/inc
+                    ${CMAKE_CURRENT_LIST_DIR}/inc
 )
 
 # Options for specific architecture
@@ -24,7 +24,6 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${CMAKE_C_FLAGS}")
 
 set(LDSCRIPTS "${CMAKE_CURRENT_LIST_DIR}/ldscripts/nokeep.ld")
 
-# Add indiviual assemble files
 set(Asmfiles "${CMAKE_CURRENT_LIST_DIR}/startup/startup_ARMCM7.S")
 
 set(Sources
@@ -48,18 +47,10 @@ set(Sources
 add_executable(${PROJECT_NAME} ${Sources} ${Asmfiles})
 
 target_link_libraries(${PROJECT_NAME}
-    ${ARCH_FLAGS}
     -Wl,-Map=${PROJECT_NAME}.map
-    -T${LDSCRIPTS}
+    -T ${LDSCRIPTS}
 )
 
 add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD COMMAND ${CMAKE_SIZE} ${PROJECT_NAME}.elf COMMENT "Calculating the size of the bin file")
 add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD COMMAND ${CMAKE_OBJCOPY} -O binary ${PROJECT_NAME}.elf ${PROJECT_NAME}.bin COMMENT "Converting ELF to binary")
 
-# add_custom_target(run)
-# add_custom_command(TARGET run POST_BUILD COMMAND
-#     qemu-system-arm -M vexpress-a9 -m 512M -no-reboot -
-# nographic
-#  -monitor telnet:127.0.0.1:1234,server,nowait -kernel $
-# {UBOOT_PATH}/u-boot -sd sdcard.img -serial mon:
-# stdio COMMENT "Running QEMU...")

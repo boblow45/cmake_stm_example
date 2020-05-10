@@ -1,4 +1,4 @@
-loadbin Blinky.bin, 0x08000000
+loadbin stm_drone.bin, 0x08000000
 r
 exit
 
