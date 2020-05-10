@@ -6,6 +6,7 @@ set(CMAKE_C_COMPILER "arm-none-eabi-gcc")
 set(CMAKE_CXX_COMPILER "arm-none-eabi-g++")
 set(CMAKE_ASM_COMPILER "arm-none-eabi-as")
 set(CMAKE_OBJCOPY "arm-none-eabi-objcopy")
+set(CMAKE_SIZE "arm-none-eabi-size")
 
 # Options for specific architecture
 set(ARCH_FLAGS "-mthumb -mcpu=cortex-m7")

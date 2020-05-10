@@ -45,3 +45,13 @@ set(Sources
 )
 
 add_executable(${This} ${Sources} ${Asmfiles})
+add_custom_command(TARGET ${This} POST_BUILD COMMAND ${CMAKE_SIZE} ${This}.elf COMMENT "Calculating the size of the bin file")
+add_custom_command(TARGET ${This} POST_BUILD COMMAND ${CMAKE_OBJCOPY} -O binary ${This}.elf ${This}.bin COMMENT "Converting ELF to binary")
+
+# add_custom_target(run)
+# add_custom_command(TARGET run POST_BUILD COMMAND
+#     qemu-system-arm -M vexpress-a9 -m 512M -no-reboot -
+# nographic
+#  -monitor telnet:127.0.0.1:1234,server,nowait -kernel $
+# {UBOOT_PATH}/u-boot -sd sdcard.img -serial mon:
+# stdio COMMENT "Running QEMU...")
