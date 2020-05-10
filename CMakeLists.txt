@@ -2,9 +2,9 @@ include("cmake_arm_none_eabi.cmake")
 cmake_minimum_required(VERSION 3.12)
 
 # Set the variable "This", which will be used as the project name through out this file
-set(This stm_drone)
+set(PROJECT_NAME stm_drone)
 
-project(${This} C CXX ASM)
+project(${PROJECT_NAME} C CXX ASM)
 set(CMAKE_EXECUTABLE_SUFFIX ".elf")
 
 # Add directories of any header files which will be used in the project
@@ -18,10 +18,11 @@ include_directories (
 # Options for specific architecture
 set(ARCH_FLAGS "-mthumb -mcpu=cortex-m7")
 set(STARTUP_DEFS "-D__STARTUP_CLEAR_BSS -D__START=main")
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${ARCH_FLAGS} ${STARTUP_DEFS} -Os -g -Wall -flto -ffunction-sections -fdata-sections")
+add_definitions(${STARTUP_DEFS})
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${ARCH_FLAGS} -Os -g -Wall -flto -ffunction-sections -fdata-sections")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${CMAKE_C_FLAGS}")
 
-set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Wl,-Map=${This}.map")
+set(LDSCRIPTS "${CMAKE_CURRENT_LIST_DIR}/ldscripts/nokeep.ld")
 
 # Add indiviual assemble files
 set(Asmfiles "${CMAKE_CURRENT_LIST_DIR}/startup/startup_ARMCM7.S")
@@ -44,9 +45,16 @@ set(Sources
     "${CMAKE_CURRENT_LIST_DIR}/drivers/hal/src/stm32f7xx_hal_i2c.c"
 )
 
-add_executable(${This} ${Sources} ${Asmfiles})
-add_custom_command(TARGET ${This} POST_BUILD COMMAND ${CMAKE_SIZE} ${This}.elf COMMENT "Calculating the size of the bin file")
-add_custom_command(TARGET ${This} POST_BUILD COMMAND ${CMAKE_OBJCOPY} -O binary ${This}.elf ${This}.bin COMMENT "Converting ELF to binary")
+add_executable(${PROJECT_NAME} ${Sources} ${Asmfiles})
+
+target_link_libraries(${PROJECT_NAME}
+    ${ARCH_FLAGS}
+    -Wl,-Map=${PROJECT_NAME}.map
+    -T${LDSCRIPTS}
+)
+
+add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD COMMAND ${CMAKE_SIZE} ${PROJECT_NAME}.elf COMMENT "Calculating the size of the bin file")
+add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD COMMAND ${CMAKE_OBJCOPY} -O binary ${PROJECT_NAME}.elf ${PROJECT_NAME}.bin COMMENT "Converting ELF to binary")
 
 # add_custom_target(run)
 # add_custom_command(TARGET run POST_BUILD COMMAND
