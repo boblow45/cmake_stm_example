@@ -16,8 +16,6 @@ GPIO_TypeDef*	BUTTON_PORT[BUTTONn] = {USER_BUTTON_GPIO_PORT};
 const uint16_t	BUTTON_PIN[BUTTONn] = {USER_BUTTON_PIN}; 
 const uint8_t	BUTTON_IRQn[BUTTONn] = {USER_BUTTON_EXTI_IRQn};
 
-
-static void Error_Handler(void);
 static void system_clk_config();
 static void nucleo144_gpio_init(void);
 

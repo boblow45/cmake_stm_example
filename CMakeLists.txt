@@ -21,6 +21,8 @@ set(STARTUP_DEFS "-D__STARTUP_CLEAR_BSS -D__START=main")
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${ARCH_FLAGS} ${STARTUP_DEFS} -Os -g -Wall -flto -ffunction-sections -fdata-sections")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${CMAKE_C_FLAGS}")
 
+set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Wl,-Map=${This}.map")
+
 # Add indiviual assemble files
 set(Asmfiles "${CMAKE_CURRENT_LIST_DIR}/startup/startup_ARMCM7.S")
 
