@@ -7,6 +7,12 @@ cmake_install.cmake
 compile_commands.json
 Makefile
 
+# g-test #
+##########
+googletest-build/
+googletest-download/
+googletest-src/
+
 # Vs code #
 ###########
 .vscode/
