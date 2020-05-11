@@ -2,6 +2,10 @@
 #########
 CMakeFiles/
 CMakeCache.txt
+.cmake/
+cmake_install.cmake
+compile_commands.json
+Makefile
 
 # Vs code #
 ###########

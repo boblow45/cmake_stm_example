@@ -24,10 +24,9 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${CMAKE_C_FLAGS}")
 
 set(LDSCRIPTS "${CMAKE_CURRENT_LIST_DIR}/ldscripts/nokeep.ld")
 
-set(Asmfiles "${CMAKE_CURRENT_LIST_DIR}/startup/startup_ARMCM7.S")
-
 set(Sources
     main.c
+    "${CMAKE_CURRENT_LIST_DIR}/startup/startup_ARMCM7.S"
     "${CMAKE_CURRENT_LIST_DIR}/src/board_config.c"
     "${CMAKE_CURRENT_LIST_DIR}/src/error_handling.c"
     "${CMAKE_CURRENT_LIST_DIR}/src/system_stm32f7xx.c"
@@ -44,7 +43,7 @@ set(Sources
     "${CMAKE_CURRENT_LIST_DIR}/drivers/hal/src/stm32f7xx_hal_i2c.c"
 )
 
-add_executable(${PROJECT_NAME} ${Sources} ${Asmfiles})
+add_executable(${PROJECT_NAME} ${Sources})
 
 target_link_libraries(${PROJECT_NAME}
     -Wl,-Map=${PROJECT_NAME}.map
@@ -53,4 +52,9 @@ target_link_libraries(${PROJECT_NAME}
 
 add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD COMMAND ${CMAKE_SIZE} ${PROJECT_NAME}.elf COMMENT "Calculating the size of the bin file")
 add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD COMMAND ${CMAKE_OBJCOPY} -O binary ${PROJECT_NAME}.elf ${PROJECT_NAME}.bin COMMENT "Converting ELF to binary")
+
+add_custom_target(flash ALL
+                   COMMAND JLink -device STM32F767ZI -if SWD -speed 4000 -autoconnect 1 -CommanderScript ./j-link/flash.jlink 
+                   DEPENDS ${PROJECT_NAME}
+                   )
 
