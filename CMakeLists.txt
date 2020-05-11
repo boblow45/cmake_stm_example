@@ -54,28 +54,28 @@ target_link_libraries(${PROJECT_NAME}
 add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD COMMAND ${CMAKE_SIZE} ${PROJECT_NAME}.elf COMMENT "Calculating the size of the bin file")
 add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD COMMAND ${CMAKE_OBJCOPY} -O binary ${PROJECT_NAME}.elf ${PROJECT_NAME}.bin COMMENT "Converting ELF to binary")
 
-add_custom_target(flash ALL
+add_custom_target(flash
                    COMMAND JLink -device STM32F767ZI -if SWD -speed 4000 -autoconnect 1 -CommanderScript ./j-link/flash.jlink 
                    DEPENDS ${PROJECT_NAME}
                    )
 
 # Download and unpack googletest at configure time
-configure_file(CMakeLists.txt.in googletest-download/CMakeLists.txt)
-execute_process(COMMAND "${CMAKE_COMMAND}" -G "${CMAKE_GENERATOR}" .
-    WORKING_DIRECTORY "${CMAKE_BINARY_DIR}/googletest-download"
-)
-execute_process(COMMAND "${CMAKE_COMMAND}" --build .
-    WORKING_DIRECTORY "${CMAKE_BINARY_DIR}/googletest-download"
-)
+# configure_file(CMakeLists.txt.in googletest-download/CMakeLists.txt)
+# execute_process(COMMAND "${CMAKE_COMMAND}" -G "${CMAKE_GENERATOR}" .
+#     WORKING_DIRECTORY "${CMAKE_BINARY_DIR}/googletest-download"
+# )
+# execute_process(COMMAND "${CMAKE_COMMAND}" --build .
+#     WORKING_DIRECTORY "${CMAKE_BINARY_DIR}/googletest-download"
+# )
 
-# Prevent GoogleTest from overriding our compiler/linker options
-set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+# # Prevent GoogleTest from overriding our compiler/linker options
+# set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 
-# Add googletest directly to our build. This adds the following targets:
-# gtest, gtest_main, gmock and gmock_main
-add_subdirectory("${CMAKE_BINARY_DIR}/googletest-src"
-                 "${CMAKE_BINARY_DIR}/googletest-build"
-)
-# Add the test directory as a subdirectory. This directory will contain another cmake file
-# which will build the tests 
-add_subdirectory(test)
+# # Add googletest directly to our build. This adds the following targets:
+# # gtest, gtest_main, gmock and gmock_main
+# add_subdirectory("${CMAKE_BINARY_DIR}/googletest-src"
+#                  "${CMAKE_BINARY_DIR}/googletest-build"
+# )
+# # Add the test directory as a subdirectory. This directory will contain another cmake file
+# # which will build the tests 
+# add_subdirectory(test)
