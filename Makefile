@@ -78,17 +78,6 @@ rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
 
-# Special rule for the target test
-test:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
-	"C:/Program Files/CMake/bin/ctest.exe" --force-new-ctest-process $(ARGS)
-.PHONY : test
-
-# Special rule for the target test
-test/fast: test
-
-.PHONY : test/fast
-
 # The main all target
 all: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start C:/github/stm_drone/CMakeFiles C:/github/stm_drone/CMakeFiles/progress.marks
@@ -571,7 +560,6 @@ help:
 	@echo "... stm_drone"
 	@echo "... flash"
 	@echo "... rebuild_cache"
-	@echo "... test"
 	@echo "... drivers/hal/src/stm32f7xx_hal.obj"
 	@echo "... drivers/hal/src/stm32f7xx_hal.i"
 	@echo "... drivers/hal/src/stm32f7xx_hal.s"

@@ -3,29 +3,29 @@ cmake_minimum_required(VERSION 3.12)
 
 # Set the variable "This", which will be used as the project name through out this file
 set(PROJECT_NAME stm_drone)
-enable_testing()
+set(CMAKE_BUILD_TYPE RELEASE)
 
-project(${PROJECT_NAME} C CXX ASM)
+project(${PROJECT_NAME} ASM C CXX)
 set(CMAKE_EXECUTABLE_SUFFIX ".elf")
 
 # Add directories of any header files which will be used in the project
 include_directories (
-                    ${CMAKE_CURRENT_LIST_DIR}/drivers/cmsis/arm
-                    ${CMAKE_CURRENT_LIST_DIR}/drivers/cmsis/device
-                    ${CMAKE_CURRENT_LIST_DIR}/drivers/hal/inc
-                    ${CMAKE_CURRENT_LIST_DIR}/inc
-)
-
-# Options for specific architecture
-set(ARCH_FLAGS "-mthumb -mcpu=cortex-m7")
-set(STARTUP_DEFS "-D__STARTUP_CLEAR_BSS -D__START=main")
-add_definitions(${STARTUP_DEFS})
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${ARCH_FLAGS} -Os -g -Wall -flto -ffunction-sections -fdata-sections")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${CMAKE_C_FLAGS}")
-
-set(LDSCRIPTS "${CMAKE_CURRENT_LIST_DIR}/ldscripts/nokeep.ld")
-
-set(Sources
+    ${CMAKE_CURRENT_LIST_DIR}/drivers/cmsis/arm
+    ${CMAKE_CURRENT_LIST_DIR}/drivers/cmsis/device
+    ${CMAKE_CURRENT_LIST_DIR}/drivers/hal/inc
+    ${CMAKE_CURRENT_LIST_DIR}/inc
+    )
+    
+    # Options for specific architecture
+    set(ARCH_FLAGS "-mthumb -mcpu=cortex-m7")
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${ARCH_FLAGS} -Wall -flto -ffunction-sections -fdata-sections")
+    set(STARTUP_DEFS "-D__STARTUP_CLEAR_BSS -D__START=main")
+    add_definitions(${STARTUP_DEFS})
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${CMAKE_C_FLAGS}")
+    
+    set(LDSCRIPTS "${CMAKE_CURRENT_LIST_DIR}/ldscripts/gcc.ld")
+    
+    set(Sources
     main.c
     "${CMAKE_CURRENT_LIST_DIR}/startup/startup_ARMCM7.S"
     "${CMAKE_CURRENT_LIST_DIR}/src/board_config.c"
@@ -42,24 +42,25 @@ set(Sources
     "${CMAKE_CURRENT_LIST_DIR}/drivers/hal/src/stm32f7xx_hal_dma.c"
     "${CMAKE_CURRENT_LIST_DIR}/drivers/hal/src/stm32f7xx_hal_uart.c"
     "${CMAKE_CURRENT_LIST_DIR}/drivers/hal/src/stm32f7xx_hal_i2c.c"
-)
-
-add_executable(${PROJECT_NAME} ${Sources})
-
-target_link_libraries(${PROJECT_NAME}
+    )
+    
+    add_executable(${PROJECT_NAME} ${Sources})
+    
+    target_link_libraries(${PROJECT_NAME}
     -Wl,-Map=${PROJECT_NAME}.map
     -T ${LDSCRIPTS}
-)
-
-add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD COMMAND ${CMAKE_SIZE} ${PROJECT_NAME}.elf COMMENT "Calculating the size of the bin file")
-add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD COMMAND ${CMAKE_OBJCOPY} -O binary ${PROJECT_NAME}.elf ${PROJECT_NAME}.bin COMMENT "Converting ELF to binary")
-
-add_custom_target(flash
-                   COMMAND JLink -device STM32F767ZI -if SWD -speed 4000 -autoconnect 1 -CommanderScript ./j-link/flash.jlink 
-                   DEPENDS ${PROJECT_NAME}
-                   )
-
-# Download and unpack googletest at configure time
+    )
+    
+    add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD COMMAND ${CMAKE_SIZE} ${PROJECT_NAME}.elf COMMENT "Calculating the size of the bin file")
+    add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD COMMAND ${CMAKE_OBJCOPY} -O binary ${PROJECT_NAME}.elf ${PROJECT_NAME}.bin COMMENT "Converting ELF to binary")
+    
+    add_custom_target(flash
+    COMMAND JLink -device STM32F767ZI -if SWD -speed 4000 -autoconnect 1 -CommanderScript ./j-link/flash.jlink 
+    DEPENDS ${PROJECT_NAME}
+    )
+    
+# enable_testing()
+# # Download and unpack googletest at configure time
 # configure_file(CMakeLists.txt.in googletest-download/CMakeLists.txt)
 # execute_process(COMMAND "${CMAKE_COMMAND}" -G "${CMAKE_GENERATOR}" .
 #     WORKING_DIRECTORY "${CMAKE_BINARY_DIR}/googletest-download"
@@ -67,7 +68,7 @@ add_custom_target(flash
 # execute_process(COMMAND "${CMAKE_COMMAND}" --build .
 #     WORKING_DIRECTORY "${CMAKE_BINARY_DIR}/googletest-download"
 # )
-
+    
 # # Prevent GoogleTest from overriding our compiler/linker options
 # set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 
