@@ -6,6 +6,8 @@ set(PROJECT_NAME stm_drone)
 set(CMAKE_BUILD_TYPE RELEASE)
 
 project(${PROJECT_NAME} ASM C CXX)
+set(CMAKE_C_STANDARD 99)
+set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_EXECUTABLE_SUFFIX ".elf")
 
 # Add directories of any header files which will be used in the project

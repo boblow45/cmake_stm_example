@@ -23,7 +23,7 @@ add_definitions(${STARTUP_DEFS})
 
 # Options for specific architecture
 set(ARCH_FLAGS          "-mthumb -mcpu=cortex-m7")
-set(EXTRA_OPTIONS       "-Wall")
+set(EXTRA_OPTIONS       "-Wall -Wextra")
 set(CMAKE_C_FLAGS       "${CMAKE_C_FLAGS} ${ARCH_FLAGS} ${EXTRA_OPTIONS} -fdata-sections -ffunction-sections -flto" CACHE INTERNAL "")
 set(CMAKE_CXX_FLAGS     "${CMAKE_CXX_FLAGS} ${CMAKE_C_FLAGS} -fno-exceptions" CACHE INTERNAL "")
 
