@@ -1,6 +1,7 @@
 set(CMAKE_SYSTEM_NAME Generic)
 set(CMAKE_SYSTEM_PROCESSOR arm)
 
+set(CMAKE_TRY_COMPILE_TARGET_TYPE   STATIC_LIBRARY)
 set(CMAKE_AR            "arm-none-eabi-ar")
 set(CMAKE_ASM_COMPILER  "arm-none-eabi-gcc")
 set(CMAKE_C_COMPILER    "arm-none-eabi-gcc")
@@ -15,6 +16,16 @@ set(CMAKE_C_FLAGS_DEBUG     "-g -O0" CACHE INTERNAL "")
 set(CMAKE_C_FLAGS_RELEASE   "-Os" CACHE INTERNAL "")
 set(CMAKE_CXX_FLAGS_DEBUG   "${CMAKE_C_FLAGS_DEBUG}" CACHE INTERNAL "")
 set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE}" CACHE INTERNAL "")
+
+# Options for specific architecture
+set(STARTUP_DEFS "-D__STARTUP_CLEAR_BSS -D__START=main")
+add_definitions(${STARTUP_DEFS})
+
+# Options for specific architecture
+set(ARCH_FLAGS          "-mthumb -mcpu=cortex-m7")
+set(EXTRA_OPTIONS       "-Wall")
+set(CMAKE_C_FLAGS       "${CMAKE_C_FLAGS} ${ARCH_FLAGS} ${EXTRA_OPTIONS} -fdata-sections -ffunction-sections -flto" CACHE INTERNAL "")
+set(CMAKE_CXX_FLAGS     "${CMAKE_CXX_FLAGS} ${CMAKE_C_FLAGS} -fno-exceptions" CACHE INTERNAL "")
 
 set(CMAKE_EXE_LINKER_FLAGS "--specs=nano.specs -Wl,--gc-sections --specs=nosys.specs" CACHE INTERNAL "")
 
