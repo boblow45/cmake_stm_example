@@ -42,8 +42,8 @@ main.c
 add_executable(${PROJECT_NAME} ${Sources})
 
 target_link_libraries(${PROJECT_NAME}
--Wl,-Map=${PROJECT_NAME}.map
--T ${LDSCRIPTS}
+                        -Wl,-Map=${PROJECT_NAME}.map
+                        -T ${LDSCRIPTS}
 )
 
 add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD COMMAND ${CMAKE_SIZE} ${PROJECT_NAME}.elf COMMENT "Calculating the size of the bin file")

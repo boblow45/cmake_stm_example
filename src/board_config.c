@@ -27,7 +27,9 @@ void board_init(void){
 	system_clk_config();
 	HAL_Init();
 	nucleo144_gpio_init();
+	
 	MX_USART3_UART_Init();
+	HAL_UART_MspInit(&huart3);
 }
 
 /*
@@ -72,7 +74,6 @@ void nucleo144_gpio_init(void) {
 	BSP_LED_Init(LED_BLUE);
 	BSP_LED_Init(LED_RED);
 	BSP_PB_Init(BUTTON_USER, BUTTON_MODE_GPIO);
-	HAL_UART_MspInit(&huart3);
 }
 
 void BSP_LED_Init(Led_TypeDef Led) {

@@ -59,22 +59,22 @@
 
 /* USER CODE END 0 */
 
-
-
 /* USART3 init function */
 
 void MX_USART3_UART_Init(void) {
 
+	huart3.gState = HAL_UART_STATE_RESET;
 	huart3.Instance = USART3;
 	huart3.Init.BaudRate = 115200;
 	huart3.Init.WordLength = UART_WORDLENGTH_7B;
 	huart3.Init.StopBits = UART_STOPBITS_1;
 	huart3.Init.Parity = UART_PARITY_NONE;
-	huart3.Init.Mode = UART_MODE_TX_RX;
 	huart3.Init.HwFlowCtl = UART_HWCONTROL_NONE;
+	huart3.Init.Mode = UART_MODE_TX_RX;
 	huart3.Init.OverSampling = UART_OVERSAMPLING_16;
 	huart3.Init.OneBitSampling = UART_ONE_BIT_SAMPLE_DISABLE;
 	huart3.AdvancedInit.AdvFeatureInit = UART_ADVFEATURE_NO_INIT;
+
 	if(HAL_UART_Init(&huart3) != HAL_OK) {
 		_Error_Handler(__FILE__, __LINE__);
 	}
@@ -88,7 +88,7 @@ void HAL_UART_MspInit(UART_HandleTypeDef* uartHandle) {
 
 		/* USER CODE END USART3_MspInit 0 */
 		/* USART3 clock enable */
-		__HAL_RCC_USART3_CLK_ENABLE();
+		__HAL_RCC_GPIOD_CLK_ENABLE();
 
 		/**USART3 GPIO Configuration    
     PD8     ------> USART3_TX
@@ -102,6 +102,7 @@ void HAL_UART_MspInit(UART_HandleTypeDef* uartHandle) {
 		HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
 
 		/* USER CODE BEGIN USART3_MspInit 1 */
+		__HAL_RCC_USART3_CLK_ENABLE();
 
 		/* USER CODE END USART3_MspInit 1 */
 	}
