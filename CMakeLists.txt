@@ -21,7 +21,8 @@ include_directories (
 set(LDSCRIPTS "${CMAKE_CURRENT_LIST_DIR}/ldscripts/gcc.ld")
 
 set(Sources
-main.c
+main.cpp
+
 "${CMAKE_CURRENT_LIST_DIR}/startup/startup_ARMCM7.S"
 "${CMAKE_CURRENT_LIST_DIR}/src/board_config.c"
 "${CMAKE_CURRENT_LIST_DIR}/src/error_handling.c"

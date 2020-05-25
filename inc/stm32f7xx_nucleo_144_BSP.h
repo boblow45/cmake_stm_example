@@ -1,6 +1,11 @@
 #ifndef __STM32F7XX_NUCLEO_144_H
 #define __STM32F7XX_NUCLEO_144_H
 
+#ifdef __cplusplus
+extern "C"
+{
+#endif
+
 #include "stm32f7xx_hal.h"
 
 /* To be defined only if the board is provided with the related shield */
@@ -9,27 +14,27 @@
 /* #define ADAFRUIT_TFT_JOY_SD_ID802 */
 #endif
 
-typedef enum {
-	LED1 = 0,
-	LED_GREEN = LED1,
-	LED2 = 1,
-	LED_BLUE = LED2,
-	LED3 = 2,
-	LED_RED = LED3
-} Led_TypeDef;
+	typedef enum {
+		LED1 = 0,
+		LED_GREEN = LED1,
+		LED2 = 1,
+		LED_BLUE = LED2,
+		LED3 = 2,
+		LED_RED = LED3
+	} Led_TypeDef;
 
-typedef enum { BUTTON_USER = 0, BUTTON_KEY = BUTTON_USER } Button_TypeDef;
+	typedef enum { BUTTON_USER = 0, BUTTON_KEY = BUTTON_USER } Button_TypeDef;
 
-typedef enum { BUTTON_MODE_GPIO = 0, BUTTON_MODE_EXTI = 1 } ButtonMode_TypeDef;
+	typedef enum { BUTTON_MODE_GPIO = 0, BUTTON_MODE_EXTI = 1 } ButtonMode_TypeDef;
 
-typedef enum {
-	JOY_NONE = 0,
-	JOY_SEL = 1,
-	JOY_DOWN = 2,
-	JOY_LEFT = 3,
-	JOY_RIGHT = 4,
-	JOY_UP = 5
-} JOYState_TypeDef;
+	typedef enum {
+		JOY_NONE = 0,
+		JOY_SEL = 1,
+		JOY_DOWN = 2,
+		JOY_LEFT = 3,
+		JOY_RIGHT = 4,
+		JOY_UP = 5
+	} JOYState_TypeDef;
 
 #ifndef USE_STM32F7XX_NUCLEO_144
 #	define USE_STM32F7XX_NUCLEO_144
@@ -177,19 +182,23 @@ typedef enum {
 #	define NUCLEO_ADCx_GPIO_CLK_DISABLE() __HAL_RCC_GPIOF_CLK_DISABLE()
 #endif
 
-uint32_t BSP_GetVersion(void);
-void BSP_LED_Init(Led_TypeDef Led);
-void BSP_LED_DeInit(Led_TypeDef Led);
-void BSP_LED_On(Led_TypeDef Led);
-void BSP_LED_Off(Led_TypeDef Led);
-void BSP_LED_Toggle(Led_TypeDef Led);
-void BSP_PB_Init(Button_TypeDef Button, ButtonMode_TypeDef ButtonMode);
-void BSP_PB_DeInit(Button_TypeDef Button);
-uint32_t BSP_PB_GetState(Button_TypeDef Button);
+	uint32_t BSP_GetVersion(void);
+	void BSP_LED_Init(Led_TypeDef Led);
+	void BSP_LED_DeInit(Led_TypeDef Led);
+	void BSP_LED_On(Led_TypeDef Led);
+	void BSP_LED_Off(Led_TypeDef Led);
+	void BSP_LED_Toggle(Led_TypeDef Led);
+	void BSP_PB_Init(Button_TypeDef Button, ButtonMode_TypeDef ButtonMode);
+	void BSP_PB_DeInit(Button_TypeDef Button);
+	uint32_t BSP_PB_GetState(Button_TypeDef Button);
 #ifdef HAL_ADC_MODULE_ENABLED
-uint8_t BSP_JOY_Init(void);
-JOYState_TypeDef BSP_JOY_GetState(void);
-void BSP_JOY_DeInit(void);
+	uint8_t BSP_JOY_Init(void);
+	JOYState_TypeDef BSP_JOY_GetState(void);
+	void BSP_JOY_DeInit(void);
+#endif
+
+#ifdef __cplusplus
+}
 #endif
 
 #endif
