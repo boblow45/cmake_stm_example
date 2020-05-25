@@ -24,12 +24,10 @@ add_definitions(${STARTUP_DEFS})
 # Options for specific architecture
 set(ARCH_FLAGS          "-mthumb -mcpu=cortex-m7 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp")
 set(EXTRA_OPTIONS       "-Wall -Wextra")
-set(CMAKE_C_FLAGS       "${CMAKE_C_FLAGS} ${ARCH_FLAGS} ${EXTRA_OPTIONS} -fdata-sections -ffunction-sections -flto" CACHE INTERNAL "")
+set(CMAKE_C_FLAGS       "${CMAKE_C_FLAGS} ${ARCH_FLAGS} ${EXTRA_OPTIONS} -fdata-sections -ffunction-sections -flto -fno-builtin" CACHE INTERNAL "")
 set(CMAKE_CXX_FLAGS     "${CMAKE_CXX_FLAGS} ${CMAKE_C_FLAGS} -fno-exceptions" CACHE INTERNAL "")
 
-# set(CMAKE_EXE_LINKER_FLAGS "--specs=nano.specs -Wl,--gc-sections --specs=rdimon.specs" CACHE INTERNAL "")
-# set(CMAKE_EXE_LINKER_FLAGS "--specs=nano.specs -Wl,--gc-sections --specs=nosys.specs" CACHE INTERNAL "")
-set(CMAKE_EXE_LINKER_FLAGS "--specs=nano.specs -Wl,--gc-sections" CACHE INTERNAL "")
+set(CMAKE_EXE_LINKER_FLAGS "--specs=nano.specs -Wl,--gc-sections --specs=nosys.specs" CACHE INTERNAL "")
 
 set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
 set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)

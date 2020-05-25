@@ -12,11 +12,9 @@ int main(void) {
 	uint32_t curr = 0;
 	board_init();
 
-	// char* hello = "hello\n";
 	while(1) {
 		/* Blink Red LED */
 		printf("Hello World!\n");
-		// HAL_UART_Transmit(&huart3, (uint8_t*)hello, 7, 500);
 
 		HAL_Delay(100);
 		if(curr) {
