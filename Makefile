@@ -271,6 +271,33 @@ drivers/hal/src/stm32f7xx_hal_i2c.c.s:
 	$(MAKE) -f CMakeFiles/stm_drone.dir/build.make CMakeFiles/stm_drone.dir/drivers/hal/src/stm32f7xx_hal_i2c.c.s
 .PHONY : drivers/hal/src/stm32f7xx_hal_i2c.c.s
 
+drivers/hal/src/stm32f7xx_hal_i2c_ex.obj: drivers/hal/src/stm32f7xx_hal_i2c_ex.c.obj
+
+.PHONY : drivers/hal/src/stm32f7xx_hal_i2c_ex.obj
+
+# target to build an object file
+drivers/hal/src/stm32f7xx_hal_i2c_ex.c.obj:
+	$(MAKE) -f CMakeFiles/stm_drone.dir/build.make CMakeFiles/stm_drone.dir/drivers/hal/src/stm32f7xx_hal_i2c_ex.c.obj
+.PHONY : drivers/hal/src/stm32f7xx_hal_i2c_ex.c.obj
+
+drivers/hal/src/stm32f7xx_hal_i2c_ex.i: drivers/hal/src/stm32f7xx_hal_i2c_ex.c.i
+
+.PHONY : drivers/hal/src/stm32f7xx_hal_i2c_ex.i
+
+# target to preprocess a source file
+drivers/hal/src/stm32f7xx_hal_i2c_ex.c.i:
+	$(MAKE) -f CMakeFiles/stm_drone.dir/build.make CMakeFiles/stm_drone.dir/drivers/hal/src/stm32f7xx_hal_i2c_ex.c.i
+.PHONY : drivers/hal/src/stm32f7xx_hal_i2c_ex.c.i
+
+drivers/hal/src/stm32f7xx_hal_i2c_ex.s: drivers/hal/src/stm32f7xx_hal_i2c_ex.c.s
+
+.PHONY : drivers/hal/src/stm32f7xx_hal_i2c_ex.s
+
+# target to generate assembly for a file
+drivers/hal/src/stm32f7xx_hal_i2c_ex.c.s:
+	$(MAKE) -f CMakeFiles/stm_drone.dir/build.make CMakeFiles/stm_drone.dir/drivers/hal/src/stm32f7xx_hal_i2c_ex.c.s
+.PHONY : drivers/hal/src/stm32f7xx_hal_i2c_ex.c.s
+
 drivers/hal/src/stm32f7xx_hal_rcc.obj: drivers/hal/src/stm32f7xx_hal_rcc.c.obj
 
 .PHONY : drivers/hal/src/stm32f7xx_hal_rcc.obj
@@ -405,6 +432,33 @@ src/error_handling.s: src/error_handling.c.s
 src/error_handling.c.s:
 	$(MAKE) -f CMakeFiles/stm_drone.dir/build.make CMakeFiles/stm_drone.dir/src/error_handling.c.s
 .PHONY : src/error_handling.c.s
+
+src/i2c.obj: src/i2c.c.obj
+
+.PHONY : src/i2c.obj
+
+# target to build an object file
+src/i2c.c.obj:
+	$(MAKE) -f CMakeFiles/stm_drone.dir/build.make CMakeFiles/stm_drone.dir/src/i2c.c.obj
+.PHONY : src/i2c.c.obj
+
+src/i2c.i: src/i2c.c.i
+
+.PHONY : src/i2c.i
+
+# target to preprocess a source file
+src/i2c.c.i:
+	$(MAKE) -f CMakeFiles/stm_drone.dir/build.make CMakeFiles/stm_drone.dir/src/i2c.c.i
+.PHONY : src/i2c.c.i
+
+src/i2c.s: src/i2c.c.s
+
+.PHONY : src/i2c.s
+
+# target to generate assembly for a file
+src/i2c.c.s:
+	$(MAKE) -f CMakeFiles/stm_drone.dir/build.make CMakeFiles/stm_drone.dir/src/i2c.c.s
+.PHONY : src/i2c.c.s
 
 src/retarget.obj: src/retarget.c.obj
 
@@ -575,6 +629,9 @@ help:
 	@echo "... drivers/hal/src/stm32f7xx_hal_i2c.obj"
 	@echo "... drivers/hal/src/stm32f7xx_hal_i2c.i"
 	@echo "... drivers/hal/src/stm32f7xx_hal_i2c.s"
+	@echo "... drivers/hal/src/stm32f7xx_hal_i2c_ex.obj"
+	@echo "... drivers/hal/src/stm32f7xx_hal_i2c_ex.i"
+	@echo "... drivers/hal/src/stm32f7xx_hal_i2c_ex.s"
 	@echo "... drivers/hal/src/stm32f7xx_hal_rcc.obj"
 	@echo "... drivers/hal/src/stm32f7xx_hal_rcc.i"
 	@echo "... drivers/hal/src/stm32f7xx_hal_rcc.s"
@@ -590,6 +647,9 @@ help:
 	@echo "... src/error_handling.obj"
 	@echo "... src/error_handling.i"
 	@echo "... src/error_handling.s"
+	@echo "... src/i2c.obj"
+	@echo "... src/i2c.i"
+	@echo "... src/i2c.s"
 	@echo "... src/retarget.obj"
 	@echo "... src/retarget.i"
 	@echo "... src/retarget.s"
