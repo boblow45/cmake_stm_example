@@ -1,6 +1,4 @@
 #include "stm32f7xx_hal.h"
-#include "stm32f7xx_hal_conf.h"
-#include "stm32f7xx_hal_rcc.h"
 #include "stm32f7xx_nucleo_144_BSP.h"
 
 #include "board_config.h"

@@ -1,13 +1,11 @@
 #include <stdio.h>
 
 #include "stm32f7xx_hal.h"
-#include "stm32f7xx_hal_i2c.h"
 #include "stm32f7xx_nucleo_144_BSP.h"
 
 #include "board_config.h"
 #include "globals.h"
 #include "main.h"
-#include "usart.h"
 
 // ADXL345 -> 0x53
 // L3G4200D -> 0x69

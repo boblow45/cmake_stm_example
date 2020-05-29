@@ -55,7 +55,6 @@ extern "C"
 #	endif
 
 /* Includes ------------------------------------------------------------------*/
-#	include "main.h"
 #	include "stm32f7xx_hal.h"
 
 	/* USER CODE BEGIN Includes */
