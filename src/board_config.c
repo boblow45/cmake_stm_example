@@ -28,8 +28,7 @@ void board_init(void) {
 	MX_USART3_UART_Init();
 	HAL_UART_MspInit(&huart3);
 
-	MX_I2C1_Init();
-	HAL_I2C_MspInit(&hi2c1);
+	config_i2c();
 }
 
 /*

@@ -56,33 +56,50 @@
 const uint16_t SDA_Pin = GPIO_PIN_8;
 const uint16_t SCL_Pin = GPIO_PIN_9;
 
-/* USER CODE BEGIN 0 */
+void MX_I2C_Init(I2C_HandleTypeDef* i2cHandle);
+void HAL_I2C_MspInit(I2C_HandleTypeDef* i2cHandle);
+void HAL_I2C_MspDeInit(I2C_HandleTypeDef* i2cHandle);
 
-/* USER CODE END 0 */
+static uint32_t timeout = 1000;
 
-/* I2C2 init function */
-void MX_I2C1_Init(void) {
+void config_i2c(void) {
+	hi2c.Instance = I2C1;
+	MX_I2C_Init(&hi2c);
+	HAL_I2C_MspInit(&hi2c);
+}
 
-	hi2c1.Instance = I2C1;
-	hi2c1.Mode = HAL_I2C_MODE_MASTER;
-	hi2c1.Init.Timing = 0x00909BEB;
-	hi2c1.Init.AddressingMode = I2C_ADDRESSINGMODE_7BIT;
-	hi2c1.Init.DualAddressMode = I2C_DUALADDRESS_DISABLE;
-	hi2c1.Init.GeneralCallMode = I2C_GENERALCALL_DISABLE;
-	hi2c1.Init.NoStretchMode = I2C_NOSTRETCH_DISABLE;
-	if(HAL_I2C_Init(&hi2c1) != HAL_OK) {
+void i2c_write(
+	uint16_t device_add, uint16_t mem_add, uint16_t mem_add_size, uint8_t* data, uint16_t size) {
+
+	HAL_I2C_Mem_Write(&hi2c, device_add << 1, mem_add, mem_add_size, data, size, timeout);
+}
+
+void i2c_read(
+	uint16_t device_add, uint16_t mem_add, uint16_t mem_add_size, uint8_t* data, uint16_t size) {
+
+	HAL_I2C_Mem_Read(&hi2c, device_add << 1, mem_add, mem_add_size, data, size, timeout);
+}
+
+void MX_I2C_Init(I2C_HandleTypeDef* i2cHandle) {
+	i2cHandle->Mode = HAL_I2C_MODE_MASTER;
+	i2cHandle->Init.Timing = 0x00909BEB;
+	i2cHandle->Init.AddressingMode = I2C_ADDRESSINGMODE_7BIT;
+	i2cHandle->Init.DualAddressMode = I2C_DUALADDRESS_DISABLE;
+	i2cHandle->Init.GeneralCallMode = I2C_GENERALCALL_DISABLE;
+	i2cHandle->Init.NoStretchMode = I2C_NOSTRETCH_DISABLE;
+	if(HAL_I2C_Init(i2cHandle) != HAL_OK) {
 		_Error_Handler(__FILE__, __LINE__);
 	}
 
 	/**Configure Analogue filter 
     */
-	if(HAL_I2CEx_ConfigAnalogFilter(&hi2c1, I2C_ANALOGFILTER_ENABLE) != HAL_OK) {
+	if(HAL_I2CEx_ConfigAnalogFilter(i2cHandle, I2C_ANALOGFILTER_ENABLE) != HAL_OK) {
 		_Error_Handler(__FILE__, __LINE__);
 	}
 
 	/**Configure Digital filter 
     */
-	if(HAL_I2CEx_ConfigDigitalFilter(&hi2c1, 0) != HAL_OK) {
+	if(HAL_I2CEx_ConfigDigitalFilter(i2cHandle, 0) != HAL_OK) {
 		_Error_Handler(__FILE__, __LINE__);
 	}
 }

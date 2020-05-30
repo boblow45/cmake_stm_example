@@ -460,6 +460,33 @@ src/i2c.c.s:
 	$(MAKE) -f CMakeFiles/stm_drone.dir/build.make CMakeFiles/stm_drone.dir/src/i2c.c.s
 .PHONY : src/i2c.c.s
 
+src/imu.obj: src/imu.cpp.obj
+
+.PHONY : src/imu.obj
+
+# target to build an object file
+src/imu.cpp.obj:
+	$(MAKE) -f CMakeFiles/stm_drone.dir/build.make CMakeFiles/stm_drone.dir/src/imu.cpp.obj
+.PHONY : src/imu.cpp.obj
+
+src/imu.i: src/imu.cpp.i
+
+.PHONY : src/imu.i
+
+# target to preprocess a source file
+src/imu.cpp.i:
+	$(MAKE) -f CMakeFiles/stm_drone.dir/build.make CMakeFiles/stm_drone.dir/src/imu.cpp.i
+.PHONY : src/imu.cpp.i
+
+src/imu.s: src/imu.cpp.s
+
+.PHONY : src/imu.s
+
+# target to generate assembly for a file
+src/imu.cpp.s:
+	$(MAKE) -f CMakeFiles/stm_drone.dir/build.make CMakeFiles/stm_drone.dir/src/imu.cpp.s
+.PHONY : src/imu.cpp.s
+
 src/retarget.obj: src/retarget.c.obj
 
 .PHONY : src/retarget.obj
@@ -650,6 +677,9 @@ help:
 	@echo "... src/i2c.obj"
 	@echo "... src/i2c.i"
 	@echo "... src/i2c.s"
+	@echo "... src/imu.obj"
+	@echo "... src/imu.i"
+	@echo "... src/imu.s"
 	@echo "... src/retarget.obj"
 	@echo "... src/retarget.i"
 	@echo "... src/retarget.s"

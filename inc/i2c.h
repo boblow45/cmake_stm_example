@@ -48,43 +48,24 @@
   */
 /* Define to prevent recursive inclusion -------------------------------------*/
 #ifndef __i2c_H
-#	define __i2c_H
-#	ifdef __cplusplus
+#define __i2c_H
+#ifdef __cplusplus
 extern "C"
 {
-#	endif
+#endif
 
 /* Includes ------------------------------------------------------------------*/
-#	include "stm32f7xx_hal.h"
-
-	/* USER CODE BEGIN Includes */
-
-	/* USER CODE END Includes */
-
-	/* USER CODE BEGIN Private defines */
-
-	/* USER CODE END Private defines */
+#include "stm32f7xx_hal.h"
 
 	extern void _Error_Handler(char*, int);
+	void config_i2c(void);
 
-	void MX_I2C1_Init(void);
-	void HAL_I2C_MspInit(I2C_HandleTypeDef* i2cHandle);
+	void i2c_write(
+		uint16_t device_add, uint16_t mem_add, uint16_t mem_add_size, uint8_t* data, uint16_t size);
+	void i2c_read(
+		uint16_t device_add, uint16_t mem_add, uint16_t mem_add_size, uint8_t* data, uint16_t size);
 
-	/* USER CODE BEGIN Prototypes */
-
-	/* USER CODE END Prototypes */
-
-#	ifdef __cplusplus
+#ifdef __cplusplus
 }
-#	endif
+#endif
 #endif /*__ i2c_H */
-
-/**
-  * @}
-  */
-
-/**
-  * @}
-  */
-
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
