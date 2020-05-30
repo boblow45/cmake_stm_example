@@ -20,42 +20,24 @@ void ADXL345::init(void) {
 	i2c_write(this->i2c_add, (uint16_t)this->power_ctl, 1, &data, 1);
 }
 
+void ADXL345::data(adxl345_data* data) {
+	uint8_t i2c_data[6];
+	i2c_read(
+		this->i2c_add, (uint16_t)this->x_add, 1, i2c_data, sizeof(i2c_data) / sizeof(i2c_data[0]));
+
+	data->x = (i2c_data[1] << 8) | i2c_data[0];
+	data->x /= 8;
+	data->y = (i2c_data[3] << 8) | i2c_data[2];
+	data->y /= 8;
+	data->z = (i2c_data[5] << 8) | i2c_data[4];
+	data->z /= 8;
+}
+
 ADXL345::ADXL345()
 	: dev_id(0)
 	, bw_rate(0x2C)
 	, x_add(0x32)
-	, y_add(0x34)
-	, z_add(0x36)
 	, data_format(0x31)
 	, power_ctl(0x2D) {
 	this->init();
 };
-
-int16_t ADXL345::x_data(void) {
-	uint8_t data[2];
-	i2c_read(this->i2c_add, (uint16_t)this->x_add, 1, data, 2);
-
-	int16_t result = (data[1] << 8) | data[0];
-	result /= 3;
-
-	return result;
-}
-
-int16_t ADXL345::y_data(void) {
-	uint8_t data[2];
-	i2c_read(this->i2c_add, (uint16_t)this->y_add, 1, data, 2);
-
-	int16_t result = (data[1] << 8) | data[0];
-	result /= 3;
-
-	return result;
-}
-
-int16_t ADXL345::z_data(void) {
-	uint8_t data[2];
-	i2c_read(this->i2c_add, (uint16_t)this->z_add, 1, data, 2);
-
-	int16_t result = (data[1] << 8) | data[0];
-	result /= 3;
-	return result;
-}

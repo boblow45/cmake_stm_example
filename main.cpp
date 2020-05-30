@@ -21,12 +21,13 @@ int main(void) {
 
 	ADXL345 adxl;
 
+	adxl345_data acc_data;
 	printf("Acc ID: %X\n", adxl.id());
 	while(1) {
 		/* Blink Red LED */
 
-		printf(
-			"Acc x val: %d\ty val: %d\tz val: %d\n", adxl.x_data(), adxl.y_data(), adxl.z_data());
+		adxl.data(&acc_data);
+		printf("Acc x val: %d\ty val: %d\tz val: %d\n", acc_data.x, acc_data.y, acc_data.z);
 
 		HAL_Delay(100);
 		if(curr) {
