@@ -59,17 +59,11 @@ extern "C"
 #include <stdint.h>
 
 	extern void _Error_Handler(char*, int);
-	void config_i2c(void);
-
-	void i2c_write(
-		uint16_t device_add, uint16_t mem_add, uint16_t mem_add_size, uint8_t* data, uint16_t size);
-	void i2c_read(
-		uint16_t device_add, uint16_t mem_add, uint16_t mem_add_size, uint8_t* data, uint16_t size);
 
 	class I2C {
 	private:
-		I2C_HandleTypeDef hi2c;
 		static const uint32_t timeout = 1000;
+		I2C_HandleTypeDef* i2c_bus;
 
 	public:
 		I2C(void);

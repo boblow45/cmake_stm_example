@@ -55,47 +55,24 @@ const uint16_t SDA_Pin = GPIO_PIN_8;
 const uint16_t SCL_Pin = GPIO_PIN_9;
 
 I2C_HandleTypeDef hi2c;
-
 void MX_I2C_Init(I2C_HandleTypeDef* i2cHandle);
-void HAL_I2C_MspInit(I2C_HandleTypeDef* i2cHandle);
 void HAL_I2C_MspDeInit(I2C_HandleTypeDef* i2cHandle);
+void HAL_I2C_MspInit(I2C_HandleTypeDef* i2cHandle);
 
-static uint32_t timeout = 1000;
-
-void config_i2c(void) {
+I2C::I2C(void) {
 	hi2c.Instance = I2C1;
 	MX_I2C_Init(&hi2c);
 	HAL_I2C_MspInit(&hi2c);
 }
 
-void i2c_write(
-	uint16_t device_add, uint16_t mem_add, uint16_t mem_add_size, uint8_t* data, uint16_t size) {
-
-	HAL_I2C_Mem_Write(&hi2c, device_add << 1, mem_add, mem_add_size, data, size, timeout);
-}
-
-void i2c_read(
-	uint16_t device_add, uint16_t mem_add, uint16_t mem_add_size, uint8_t* data, uint16_t size) {
-
-	HAL_I2C_Mem_Read(&hi2c, device_add << 1, mem_add, mem_add_size, data, size, timeout);
-}
-
-I2C::I2C(void) {
-	this->hi2c.Instance = I2C1;
-	MX_I2C_Init(&(this->hi2c));
-	HAL_I2C_MspInit(&(this->hi2c));
-}
-
 void I2C::write(
 	uint16_t device_add, uint16_t mem_add, uint16_t mem_add_size, uint8_t* data, uint16_t size) {
-	HAL_I2C_Mem_Read(
-		&(this->hi2c), device_add << 1, mem_add, mem_add_size, data, size, this->timeout);
+	HAL_I2C_Mem_Write(&hi2c, device_add << 1, mem_add, mem_add_size, data, size, this->timeout);
 }
 
 void I2C::read(
 	uint16_t device_add, uint16_t mem_add, uint16_t mem_add_size, uint8_t* data, uint16_t size) {
-	HAL_I2C_Mem_Write(
-		&(this->hi2c), device_add << 1, mem_add, mem_add_size, data, size, this->timeout);
+	HAL_I2C_Mem_Read(&hi2c, device_add << 1, mem_add, mem_add_size, data, size, this->timeout);
 }
 
 void MX_I2C_Init(I2C_HandleTypeDef* i2cHandle) {

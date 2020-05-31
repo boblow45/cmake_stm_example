@@ -1,6 +1,7 @@
 #ifndef __IMU_H__
 #define __IMU_H__
 
+#include "i2c.hpp"
 #include <stdint.h>
 
 typedef struct __adxl345_data {
@@ -32,8 +33,10 @@ private:
 	static const uint8_t data_format = 0x31;
 	static const uint8_t power_ctl = 0x2D;
 
+	I2C& hi2c;
+
 public:
-	ADXL345();
+	ADXL345(I2C& i2c_interface);
 
 	uint8_t id(void);
 	void init(void);
@@ -49,8 +52,10 @@ private:
 	static const uint8_t ctrl_reg4 = 0x23;
 	static const uint8_t data_add = 0x28;
 
+	I2C& hi2c;
+
 public:
-	L3G4200D();
+	L3G4200D(I2C& i2c_interface);
 
 	uint8_t id(void);
 	void init(void);
@@ -68,8 +73,12 @@ private:
 
 	static const uint8_t data_add = 0x03;
 
+	uint8_t i2c_buffer[6];
+
+	I2C& hi2c;
+
 public:
-	HMC5883L(void);
+	HMC5883L(I2C& i2c_interface);
 
 	uint8_t id(void);
 	void init(void);

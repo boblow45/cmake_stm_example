@@ -6,10 +6,10 @@
 #include "board_config.h"
 #include "globals.h"
 #include "main.h"
+#include "stm32f7xx_hal.h"
 
 #include "i2c.hpp"
 #include "imu.hpp"
-
 
 // ADXL345 -> 0x53
 // L3G4200D -> 0x69
@@ -19,12 +19,13 @@
 int main(void) {
 	uint32_t curr = 0;
 	board_init();
-	config_i2c();
+
+	I2C hi2c;
 	printf("Hello World!\n");
 
-	ADXL345 accelerometer;
-	L3G4200D gyroscope;
-	HMC5883L compass;
+	ADXL345 accelerometer(hi2c);
+	L3G4200D gyroscope(hi2c);
+	HMC5883L compass(hi2c);
 
 	adxl345_data acc_data;
 	l3g4300d_data gyro_data;
