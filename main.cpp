@@ -7,7 +7,9 @@
 #include "globals.h"
 #include "main.h"
 
+#include "i2c.hpp"
 #include "imu.hpp"
+
 
 // ADXL345 -> 0x53
 // L3G4200D -> 0x69
@@ -17,23 +19,32 @@
 int main(void) {
 	uint32_t curr = 0;
 	board_init();
+	config_i2c();
 	printf("Hello World!\n");
 
 	ADXL345 accelerometer;
 	L3G4200D gyroscope;
+	HMC5883L compass;
 
 	adxl345_data acc_data;
 	l3g4300d_data gyro_data;
+	hmc5883l_data compass_data;
 	printf("Accelerometer ID: %X\n", accelerometer.id());
 	printf("Gyroscope ID: %X\n", gyroscope.id());
+	printf("Compass ID: %X\n", compass.id());
 	while(1) {
 		/* Blink Red LED */
 
 		accelerometer.data(&acc_data);
 		gyroscope.data(&gyro_data);
+		compass.data(&compass_data);
 		printf("Acc x val: %d\ty val: %d\tz val: %d\n", acc_data.x, acc_data.y, acc_data.z);
 		printf(
 			"Gyroscope x val: %d\ty val: %d\tz val: %d\n", gyro_data.x, gyro_data.y, gyro_data.z);
+		printf("Compass x val: %d\ty val: %d\tz val: %d\n",
+			compass_data.x,
+			compass_data.y,
+			compass_data.z);
 
 		HAL_Delay(100);
 		if(curr) {

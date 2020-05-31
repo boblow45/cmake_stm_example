@@ -4,7 +4,7 @@
 #include "board_config.h"
 #include "error_handling.h"
 #include "globals.h"
-#include "i2c.h"
+// #include "i2c.hpp"
 #include "usart.h"
 
 GPIO_TypeDef* GPIO_PORT[LEDn] = {LED1_GPIO_PORT, LED2_GPIO_PORT, LED3_GPIO_PORT};
@@ -28,7 +28,7 @@ void board_init(void) {
 	MX_USART3_UART_Init();
 	HAL_UART_MspInit(&huart3);
 
-	config_i2c();
+	// config_i2c();
 }
 
 /*

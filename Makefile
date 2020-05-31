@@ -433,32 +433,32 @@ src/error_handling.c.s:
 	$(MAKE) -f CMakeFiles/stm_drone.dir/build.make CMakeFiles/stm_drone.dir/src/error_handling.c.s
 .PHONY : src/error_handling.c.s
 
-src/i2c.obj: src/i2c.c.obj
+src/i2c.obj: src/i2c.cpp.obj
 
 .PHONY : src/i2c.obj
 
 # target to build an object file
-src/i2c.c.obj:
-	$(MAKE) -f CMakeFiles/stm_drone.dir/build.make CMakeFiles/stm_drone.dir/src/i2c.c.obj
-.PHONY : src/i2c.c.obj
+src/i2c.cpp.obj:
+	$(MAKE) -f CMakeFiles/stm_drone.dir/build.make CMakeFiles/stm_drone.dir/src/i2c.cpp.obj
+.PHONY : src/i2c.cpp.obj
 
-src/i2c.i: src/i2c.c.i
+src/i2c.i: src/i2c.cpp.i
 
 .PHONY : src/i2c.i
 
 # target to preprocess a source file
-src/i2c.c.i:
-	$(MAKE) -f CMakeFiles/stm_drone.dir/build.make CMakeFiles/stm_drone.dir/src/i2c.c.i
-.PHONY : src/i2c.c.i
+src/i2c.cpp.i:
+	$(MAKE) -f CMakeFiles/stm_drone.dir/build.make CMakeFiles/stm_drone.dir/src/i2c.cpp.i
+.PHONY : src/i2c.cpp.i
 
-src/i2c.s: src/i2c.c.s
+src/i2c.s: src/i2c.cpp.s
 
 .PHONY : src/i2c.s
 
 # target to generate assembly for a file
-src/i2c.c.s:
-	$(MAKE) -f CMakeFiles/stm_drone.dir/build.make CMakeFiles/stm_drone.dir/src/i2c.c.s
-.PHONY : src/i2c.c.s
+src/i2c.cpp.s:
+	$(MAKE) -f CMakeFiles/stm_drone.dir/build.make CMakeFiles/stm_drone.dir/src/i2c.cpp.s
+.PHONY : src/i2c.cpp.s
 
 src/imu.obj: src/imu.cpp.obj
 

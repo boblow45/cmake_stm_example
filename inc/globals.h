@@ -9,8 +9,6 @@ extern "C"
 #include "stm32f7xx_hal.h"
 
 	UART_HandleTypeDef huart3;
-	I2C_HandleTypeDef hi2c;
-
 #ifdef __cplusplus
 }
 #endif

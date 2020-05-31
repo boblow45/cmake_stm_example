@@ -1,6 +1,6 @@
 #include <stdint.h>
 
-#include "i2c.h"
+#include "i2c.hpp"
 #include "imu.hpp"
 
 ADXL345::ADXL345() {
@@ -52,6 +52,31 @@ uint8_t L3G4200D::id(void) {
 }
 
 void L3G4200D::data(l3g4300d_data* data) {
+	uint8_t i2c_data[6];
+	i2c_read(this->i2c_add, this->data_add, 1, i2c_data, sizeof(i2c_data) / sizeof(i2c_data[0]));
+
+	data->x = *((int16_t*)i2c_data);
+	data->y = *((int16_t*)(i2c_data + 2));
+	data->z = *((int16_t*)(i2c_data + 4));
+}
+
+HMC5883L::HMC5883L(void) {
+	uint8_t data;
+	data = 0b110 << 2;
+	i2c_write(this->i2c_add, this->con_reg_a, 1, &data, 1);
+	data = 0b001 << 5;
+	i2c_write(this->i2c_add, this->con_reg_b, 1, &data, 1);
+	data = 0;
+	i2c_write(this->i2c_add, this->mode_reg, 1, &data, 1);
+}
+
+uint8_t HMC5883L::id(void) {
+	uint8_t i2c_data;
+	i2c_read(this->i2c_add, this->dev_id, 1, &i2c_data, 1);
+	return i2c_data;
+}
+
+void HMC5883L::data(hmc5883l_data* data) {
 	uint8_t i2c_data[6];
 	i2c_read(this->i2c_add, this->data_add, 1, i2c_data, sizeof(i2c_data) / sizeof(i2c_data[0]));
 

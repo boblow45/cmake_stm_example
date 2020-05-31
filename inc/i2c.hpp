@@ -54,8 +54,9 @@ extern "C"
 {
 #endif
 
-/* Includes ------------------------------------------------------------------*/
+	/* Includes ------------------------------------------------------------------*/
 #include "stm32f7xx_hal.h"
+#include <stdint.h>
 
 	extern void _Error_Handler(char*, int);
 	void config_i2c(void);
@@ -64,6 +65,26 @@ extern "C"
 		uint16_t device_add, uint16_t mem_add, uint16_t mem_add_size, uint8_t* data, uint16_t size);
 	void i2c_read(
 		uint16_t device_add, uint16_t mem_add, uint16_t mem_add_size, uint8_t* data, uint16_t size);
+
+	class I2C {
+	private:
+		I2C_HandleTypeDef hi2c;
+		static const uint32_t timeout = 1000;
+
+	public:
+		I2C(void);
+
+		void write(uint16_t device_add,
+			uint16_t mem_add,
+			uint16_t mem_add_size,
+			uint8_t* data,
+			uint16_t size);
+		void read(uint16_t device_add,
+			uint16_t mem_add,
+			uint16_t mem_add_size,
+			uint8_t* data,
+			uint16_t size);
+	};
 
 #ifdef __cplusplus
 }

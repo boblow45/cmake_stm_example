@@ -33,8 +33,8 @@ main.cpp
 "${CMAKE_CURRENT_LIST_DIR}/src/stm32f7xx_it.c"
 "${CMAKE_CURRENT_LIST_DIR}/src/stm32f7xx_hal_msp.c"
 "${CMAKE_CURRENT_LIST_DIR}/src/usart.c"
-"${CMAKE_CURRENT_LIST_DIR}/src/i2c.c"   
 
+"${CMAKE_CURRENT_LIST_DIR}/src/i2c.cpp"   
 "${CMAKE_CURRENT_LIST_DIR}/src/imu.cpp"   
 
 "${CMAKE_CURRENT_LIST_DIR}/drivers/hal/src/stm32f7xx_hal.c"    

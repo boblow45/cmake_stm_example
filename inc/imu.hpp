@@ -15,6 +15,12 @@ typedef struct __l3g4300d_data {
 	int16_t z;
 } l3g4300d_data;
 
+typedef struct __hmc5883l_data {
+	int16_t x;
+	int16_t y;
+	int16_t z;
+} hmc5883l_data;
+
 class ADXL345 {
 
 private:
@@ -49,6 +55,25 @@ public:
 	uint8_t id(void);
 	void init(void);
 	void data(l3g4300d_data* data);
+};
+
+class HMC5883L {
+private:
+	static const uint8_t i2c_add = 0x1e;
+
+	static const uint8_t con_reg_a = 0x0;
+	static const uint8_t con_reg_b = 0x1;
+	static const uint8_t mode_reg = 0x2;
+	static const uint8_t dev_id = 0x0A;
+
+	static const uint8_t data_add = 0x03;
+
+public:
+	HMC5883L(void);
+
+	uint8_t id(void);
+	void init(void);
+	void data(hmc5883l_data* data);
 };
 
 #endif
