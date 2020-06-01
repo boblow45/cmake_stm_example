@@ -73,8 +73,6 @@ private:
 
 	static const uint8_t data_add = 0x03;
 
-	uint8_t i2c_buffer[6];
-
 	I2C& hi2c;
 
 public:
