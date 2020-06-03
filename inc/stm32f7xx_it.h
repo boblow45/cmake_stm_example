@@ -33,26 +33,26 @@
 
 /* Define to prevent recursive inclusion -------------------------------------*/
 #ifndef __STM32F7xx_IT_H
-#define __STM32F7xx_IT_H
+#	define __STM32F7xx_IT_H
 
-#ifdef __cplusplus
- extern "C" {
-#endif 
+#	ifdef __cplusplus
+extern "C"
+{
+#	endif
 
-/* Includes ------------------------------------------------------------------*/
-/* Exported types ------------------------------------------------------------*/
-/* Exported constants --------------------------------------------------------*/
-/* Exported macro ------------------------------------------------------------*/
-/* Exported functions ------------------------------------------------------- */
+	/* Includes ------------------------------------------------------------------*/
+	/* Exported types ------------------------------------------------------------*/
+	/* Exported constants --------------------------------------------------------*/
+	/* Exported macro ------------------------------------------------------------*/
+	/* Exported functions ------------------------------------------------------- */
 
-void SVC_Handler(void);
-void PendSV_Handler(void);
-void SysTick_Handler(void);
+	// void SVC_Handler(void);
+	// void PendSV_Handler(void);
+	void SysTick_Handler(void);
 
-
-#ifdef __cplusplus
+#	ifdef __cplusplus
 }
-#endif
+#	endif
 
 #endif /* __STM32F7xx_IT_H */
 
