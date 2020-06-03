@@ -8,21 +8,44 @@
 #include "main.h"
 #include "stm32f7xx_hal.h"
 
+#include "FreeRTOS.h"
+#include "task.h"
+
 #include "i2c.hpp"
 #include "imu.hpp"
 
-// ADXL345 -> 0x53
-// L3G4200D -> 0x69
-// BMP085 -> 0x77
-// HMC5883L -> 0x1e
+void vTask1(void* pvParameters) {
+	/* As per most tasks, this task is implemented in an infinite loop. */
+	for(;;) {
+		printf("Task 1 is running\r\n");
+		/* Delay for a period. */
+		vTaskDelay(pdMS_TO_TICKS(10));
+	}
+}
+
+void vTask2(void* pvParameters) {
+	/* As per most tasks, this task is implemented in an infinite loop. */
+	for(;;) {
+		printf("Task 2 is running\r\n");
+
+		/* Delay for a period. */
+		vTaskDelay(pdMS_TO_TICKS(10));
+	}
+}
 
 int main(void) {
 	uint32_t curr = 0;
 	board_init();
 
-	I2C hi2c;
 	printf("Hello World!\n");
+	printf("System core clock %d\n", SystemCoreClock);
 
+	xTaskCreate(vTask1, "Task 1", 1000, NULL, 2, NULL);
+	xTaskCreate(vTask2, "Task 2", 1000, NULL, 1, NULL);
+
+	vTaskStartScheduler();
+
+	I2C hi2c;
 	ADXL345 accelerometer(hi2c);
 	L3G4200D gyroscope(hi2c);
 	HMC5883L compass(hi2c);
