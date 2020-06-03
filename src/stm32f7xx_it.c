@@ -35,7 +35,6 @@
 #include "stm32f7xx.h"
 #include "stm32f7xx_hal.h"
 
-
 /* USER CODE BEGIN 0 */
 
 /* USER CODE END 0 */

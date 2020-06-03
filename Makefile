@@ -379,6 +379,195 @@ main.cpp.s:
 	$(MAKE) -f CMakeFiles/stm_drone.dir/build.make CMakeFiles/stm_drone.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+middleware/FreeRTOS/Source/event_groups.obj: middleware/FreeRTOS/Source/event_groups.c.obj
+
+.PHONY : middleware/FreeRTOS/Source/event_groups.obj
+
+# target to build an object file
+middleware/FreeRTOS/Source/event_groups.c.obj:
+	$(MAKE) -f CMakeFiles/stm_drone.dir/build.make CMakeFiles/stm_drone.dir/middleware/FreeRTOS/Source/event_groups.c.obj
+.PHONY : middleware/FreeRTOS/Source/event_groups.c.obj
+
+middleware/FreeRTOS/Source/event_groups.i: middleware/FreeRTOS/Source/event_groups.c.i
+
+.PHONY : middleware/FreeRTOS/Source/event_groups.i
+
+# target to preprocess a source file
+middleware/FreeRTOS/Source/event_groups.c.i:
+	$(MAKE) -f CMakeFiles/stm_drone.dir/build.make CMakeFiles/stm_drone.dir/middleware/FreeRTOS/Source/event_groups.c.i
+.PHONY : middleware/FreeRTOS/Source/event_groups.c.i
+
+middleware/FreeRTOS/Source/event_groups.s: middleware/FreeRTOS/Source/event_groups.c.s
+
+.PHONY : middleware/FreeRTOS/Source/event_groups.s
+
+# target to generate assembly for a file
+middleware/FreeRTOS/Source/event_groups.c.s:
+	$(MAKE) -f CMakeFiles/stm_drone.dir/build.make CMakeFiles/stm_drone.dir/middleware/FreeRTOS/Source/event_groups.c.s
+.PHONY : middleware/FreeRTOS/Source/event_groups.c.s
+
+middleware/FreeRTOS/Source/list.obj: middleware/FreeRTOS/Source/list.c.obj
+
+.PHONY : middleware/FreeRTOS/Source/list.obj
+
+# target to build an object file
+middleware/FreeRTOS/Source/list.c.obj:
+	$(MAKE) -f CMakeFiles/stm_drone.dir/build.make CMakeFiles/stm_drone.dir/middleware/FreeRTOS/Source/list.c.obj
+.PHONY : middleware/FreeRTOS/Source/list.c.obj
+
+middleware/FreeRTOS/Source/list.i: middleware/FreeRTOS/Source/list.c.i
+
+.PHONY : middleware/FreeRTOS/Source/list.i
+
+# target to preprocess a source file
+middleware/FreeRTOS/Source/list.c.i:
+	$(MAKE) -f CMakeFiles/stm_drone.dir/build.make CMakeFiles/stm_drone.dir/middleware/FreeRTOS/Source/list.c.i
+.PHONY : middleware/FreeRTOS/Source/list.c.i
+
+middleware/FreeRTOS/Source/list.s: middleware/FreeRTOS/Source/list.c.s
+
+.PHONY : middleware/FreeRTOS/Source/list.s
+
+# target to generate assembly for a file
+middleware/FreeRTOS/Source/list.c.s:
+	$(MAKE) -f CMakeFiles/stm_drone.dir/build.make CMakeFiles/stm_drone.dir/middleware/FreeRTOS/Source/list.c.s
+.PHONY : middleware/FreeRTOS/Source/list.c.s
+
+middleware/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/port.obj: middleware/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/port.c.obj
+
+.PHONY : middleware/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/port.obj
+
+# target to build an object file
+middleware/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/port.c.obj:
+	$(MAKE) -f CMakeFiles/stm_drone.dir/build.make CMakeFiles/stm_drone.dir/middleware/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/port.c.obj
+.PHONY : middleware/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/port.c.obj
+
+middleware/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/port.i: middleware/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/port.c.i
+
+.PHONY : middleware/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/port.i
+
+# target to preprocess a source file
+middleware/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/port.c.i:
+	$(MAKE) -f CMakeFiles/stm_drone.dir/build.make CMakeFiles/stm_drone.dir/middleware/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/port.c.i
+.PHONY : middleware/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/port.c.i
+
+middleware/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/port.s: middleware/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/port.c.s
+
+.PHONY : middleware/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/port.s
+
+# target to generate assembly for a file
+middleware/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/port.c.s:
+	$(MAKE) -f CMakeFiles/stm_drone.dir/build.make CMakeFiles/stm_drone.dir/middleware/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/port.c.s
+.PHONY : middleware/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/port.c.s
+
+middleware/FreeRTOS/Source/portable/MemMang/heap_2.obj: middleware/FreeRTOS/Source/portable/MemMang/heap_2.c.obj
+
+.PHONY : middleware/FreeRTOS/Source/portable/MemMang/heap_2.obj
+
+# target to build an object file
+middleware/FreeRTOS/Source/portable/MemMang/heap_2.c.obj:
+	$(MAKE) -f CMakeFiles/stm_drone.dir/build.make CMakeFiles/stm_drone.dir/middleware/FreeRTOS/Source/portable/MemMang/heap_2.c.obj
+.PHONY : middleware/FreeRTOS/Source/portable/MemMang/heap_2.c.obj
+
+middleware/FreeRTOS/Source/portable/MemMang/heap_2.i: middleware/FreeRTOS/Source/portable/MemMang/heap_2.c.i
+
+.PHONY : middleware/FreeRTOS/Source/portable/MemMang/heap_2.i
+
+# target to preprocess a source file
+middleware/FreeRTOS/Source/portable/MemMang/heap_2.c.i:
+	$(MAKE) -f CMakeFiles/stm_drone.dir/build.make CMakeFiles/stm_drone.dir/middleware/FreeRTOS/Source/portable/MemMang/heap_2.c.i
+.PHONY : middleware/FreeRTOS/Source/portable/MemMang/heap_2.c.i
+
+middleware/FreeRTOS/Source/portable/MemMang/heap_2.s: middleware/FreeRTOS/Source/portable/MemMang/heap_2.c.s
+
+.PHONY : middleware/FreeRTOS/Source/portable/MemMang/heap_2.s
+
+# target to generate assembly for a file
+middleware/FreeRTOS/Source/portable/MemMang/heap_2.c.s:
+	$(MAKE) -f CMakeFiles/stm_drone.dir/build.make CMakeFiles/stm_drone.dir/middleware/FreeRTOS/Source/portable/MemMang/heap_2.c.s
+.PHONY : middleware/FreeRTOS/Source/portable/MemMang/heap_2.c.s
+
+middleware/FreeRTOS/Source/queue.obj: middleware/FreeRTOS/Source/queue.c.obj
+
+.PHONY : middleware/FreeRTOS/Source/queue.obj
+
+# target to build an object file
+middleware/FreeRTOS/Source/queue.c.obj:
+	$(MAKE) -f CMakeFiles/stm_drone.dir/build.make CMakeFiles/stm_drone.dir/middleware/FreeRTOS/Source/queue.c.obj
+.PHONY : middleware/FreeRTOS/Source/queue.c.obj
+
+middleware/FreeRTOS/Source/queue.i: middleware/FreeRTOS/Source/queue.c.i
+
+.PHONY : middleware/FreeRTOS/Source/queue.i
+
+# target to preprocess a source file
+middleware/FreeRTOS/Source/queue.c.i:
+	$(MAKE) -f CMakeFiles/stm_drone.dir/build.make CMakeFiles/stm_drone.dir/middleware/FreeRTOS/Source/queue.c.i
+.PHONY : middleware/FreeRTOS/Source/queue.c.i
+
+middleware/FreeRTOS/Source/queue.s: middleware/FreeRTOS/Source/queue.c.s
+
+.PHONY : middleware/FreeRTOS/Source/queue.s
+
+# target to generate assembly for a file
+middleware/FreeRTOS/Source/queue.c.s:
+	$(MAKE) -f CMakeFiles/stm_drone.dir/build.make CMakeFiles/stm_drone.dir/middleware/FreeRTOS/Source/queue.c.s
+.PHONY : middleware/FreeRTOS/Source/queue.c.s
+
+middleware/FreeRTOS/Source/tasks.obj: middleware/FreeRTOS/Source/tasks.c.obj
+
+.PHONY : middleware/FreeRTOS/Source/tasks.obj
+
+# target to build an object file
+middleware/FreeRTOS/Source/tasks.c.obj:
+	$(MAKE) -f CMakeFiles/stm_drone.dir/build.make CMakeFiles/stm_drone.dir/middleware/FreeRTOS/Source/tasks.c.obj
+.PHONY : middleware/FreeRTOS/Source/tasks.c.obj
+
+middleware/FreeRTOS/Source/tasks.i: middleware/FreeRTOS/Source/tasks.c.i
+
+.PHONY : middleware/FreeRTOS/Source/tasks.i
+
+# target to preprocess a source file
+middleware/FreeRTOS/Source/tasks.c.i:
+	$(MAKE) -f CMakeFiles/stm_drone.dir/build.make CMakeFiles/stm_drone.dir/middleware/FreeRTOS/Source/tasks.c.i
+.PHONY : middleware/FreeRTOS/Source/tasks.c.i
+
+middleware/FreeRTOS/Source/tasks.s: middleware/FreeRTOS/Source/tasks.c.s
+
+.PHONY : middleware/FreeRTOS/Source/tasks.s
+
+# target to generate assembly for a file
+middleware/FreeRTOS/Source/tasks.c.s:
+	$(MAKE) -f CMakeFiles/stm_drone.dir/build.make CMakeFiles/stm_drone.dir/middleware/FreeRTOS/Source/tasks.c.s
+.PHONY : middleware/FreeRTOS/Source/tasks.c.s
+
+middleware/FreeRTOS/Source/timers.obj: middleware/FreeRTOS/Source/timers.c.obj
+
+.PHONY : middleware/FreeRTOS/Source/timers.obj
+
+# target to build an object file
+middleware/FreeRTOS/Source/timers.c.obj:
+	$(MAKE) -f CMakeFiles/stm_drone.dir/build.make CMakeFiles/stm_drone.dir/middleware/FreeRTOS/Source/timers.c.obj
+.PHONY : middleware/FreeRTOS/Source/timers.c.obj
+
+middleware/FreeRTOS/Source/timers.i: middleware/FreeRTOS/Source/timers.c.i
+
+.PHONY : middleware/FreeRTOS/Source/timers.i
+
+# target to preprocess a source file
+middleware/FreeRTOS/Source/timers.c.i:
+	$(MAKE) -f CMakeFiles/stm_drone.dir/build.make CMakeFiles/stm_drone.dir/middleware/FreeRTOS/Source/timers.c.i
+.PHONY : middleware/FreeRTOS/Source/timers.c.i
+
+middleware/FreeRTOS/Source/timers.s: middleware/FreeRTOS/Source/timers.c.s
+
+.PHONY : middleware/FreeRTOS/Source/timers.s
+
+# target to generate assembly for a file
+middleware/FreeRTOS/Source/timers.c.s:
+	$(MAKE) -f CMakeFiles/stm_drone.dir/build.make CMakeFiles/stm_drone.dir/middleware/FreeRTOS/Source/timers.c.s
+.PHONY : middleware/FreeRTOS/Source/timers.c.s
+
 src/board_config.obj: src/board_config.c.obj
 
 .PHONY : src/board_config.obj
@@ -668,6 +857,27 @@ help:
 	@echo "... main.obj"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... middleware/FreeRTOS/Source/event_groups.obj"
+	@echo "... middleware/FreeRTOS/Source/event_groups.i"
+	@echo "... middleware/FreeRTOS/Source/event_groups.s"
+	@echo "... middleware/FreeRTOS/Source/list.obj"
+	@echo "... middleware/FreeRTOS/Source/list.i"
+	@echo "... middleware/FreeRTOS/Source/list.s"
+	@echo "... middleware/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/port.obj"
+	@echo "... middleware/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/port.i"
+	@echo "... middleware/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/port.s"
+	@echo "... middleware/FreeRTOS/Source/portable/MemMang/heap_2.obj"
+	@echo "... middleware/FreeRTOS/Source/portable/MemMang/heap_2.i"
+	@echo "... middleware/FreeRTOS/Source/portable/MemMang/heap_2.s"
+	@echo "... middleware/FreeRTOS/Source/queue.obj"
+	@echo "... middleware/FreeRTOS/Source/queue.i"
+	@echo "... middleware/FreeRTOS/Source/queue.s"
+	@echo "... middleware/FreeRTOS/Source/tasks.obj"
+	@echo "... middleware/FreeRTOS/Source/tasks.i"
+	@echo "... middleware/FreeRTOS/Source/tasks.s"
+	@echo "... middleware/FreeRTOS/Source/timers.obj"
+	@echo "... middleware/FreeRTOS/Source/timers.i"
+	@echo "... middleware/FreeRTOS/Source/timers.s"
 	@echo "... src/board_config.obj"
 	@echo "... src/board_config.i"
 	@echo "... src/board_config.s"

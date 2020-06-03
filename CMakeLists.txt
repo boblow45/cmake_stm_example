@@ -16,6 +16,8 @@ include_directories (
     ${CMAKE_CURRENT_LIST_DIR}/drivers/cmsis/device
     ${CMAKE_CURRENT_LIST_DIR}/drivers/hal/inc
     ${CMAKE_CURRENT_LIST_DIR}/inc
+    ${CMAKE_CURRENT_LIST_DIR}//middleware/FreeRTOS/Source/include
+    ${CMAKE_CURRENT_LIST_DIR}//middleware/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1
     )
     
 set(LDSCRIPTS "${CMAKE_CURRENT_LIST_DIR}/ldscripts/gcc.ld")
@@ -36,6 +38,14 @@ main.cpp
 
 "${CMAKE_CURRENT_LIST_DIR}/src/i2c.cpp"   
 "${CMAKE_CURRENT_LIST_DIR}/src/imu.cpp"   
+
+"${CMAKE_CURRENT_LIST_DIR}/middleware/FreeRTOS/Source/tasks.c"
+"${CMAKE_CURRENT_LIST_DIR}/middleware/FreeRTOS/Source/queue.c"
+"${CMAKE_CURRENT_LIST_DIR}/middleware/FreeRTOS/Source/list.c"
+"${CMAKE_CURRENT_LIST_DIR}/middleware/FreeRTOS/Source/timers.c"
+"${CMAKE_CURRENT_LIST_DIR}/middleware/FreeRTOS/Source/event_groups.c"
+"${CMAKE_CURRENT_LIST_DIR}/middleware/FreeRTOS/Source/portable/MemMang/heap_2.c"
+"${CMAKE_CURRENT_LIST_DIR}/middleware/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/port.c"
 
 "${CMAKE_CURRENT_LIST_DIR}/drivers/hal/src/stm32f7xx_hal.c"    
 "${CMAKE_CURRENT_LIST_DIR}/drivers/hal/src/stm32f7xx_hal_rcc.c"
