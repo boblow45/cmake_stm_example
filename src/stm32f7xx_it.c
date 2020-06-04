@@ -32,8 +32,11 @@
   */
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f7xx_it.h"
+#include "FreeRTOS.h"
+#include "port.h"
 #include "stm32f7xx.h"
 #include "stm32f7xx_hal.h"
+#include "task.h"
 
 /* USER CODE BEGIN 0 */
 
@@ -81,6 +84,10 @@ void SysTick_Handler(void) {
 	HAL_IncTick();
 	HAL_SYSTICK_IRQHandler();
 	/* USER CODE BEGIN SysTick_IRQn 1 */
+
+	if(xTaskGetSchedulerState() != taskSCHEDULER_NOT_STARTED) {
+		xPortSysTickHandler();
+	}
 
 	/* USER CODE END SysTick_IRQn 1 */
 }

@@ -19,7 +19,7 @@ void vTask1(void* pvParameters) {
 	for(;;) {
 		printf("Task 1 is running\r\n");
 		/* Delay for a period. */
-		vTaskDelay(pdMS_TO_TICKS(10));
+		vTaskDelay(pdMS_TO_TICKS(250));
 	}
 }
 
@@ -29,7 +29,7 @@ void vTask2(void* pvParameters) {
 		printf("Task 2 is running\r\n");
 
 		/* Delay for a period. */
-		vTaskDelay(pdMS_TO_TICKS(10));
+		vTaskDelay(pdMS_TO_TICKS(250));
 	}
 }
 
