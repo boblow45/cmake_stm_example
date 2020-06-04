@@ -26,34 +26,18 @@ void vTask1(void* pvParameters) {
 			BSP_LED_Off(LED_GREEN);
 			curr = 1;
 		}
-		vTaskDelay(pdMS_TO_TICKS(250));
+		vTaskDelay(pdMS_TO_TICKS(200));
 	}
 }
 
 void vTask2(void* pvParameters) {
 	I2C hi2c;
-	ADXL345 accelerometer(hi2c);
-	L3G4200D gyroscope(hi2c);
-	HMC5883L compass(hi2c);
 
-	adxl345_data acc_data;
-	l3g4300d_data gyro_data;
-	hmc5883l_data compass_data;
-	printf("Accelerometer ID: %X\n", accelerometer.id());
-	printf("Gyroscope ID: %X\n", gyroscope.id());
-	printf("Compass ID: %X\n", compass.id());
+	IMU imu(hi2c);
+	euler_angles angles;
 	for(;;) {
-		accelerometer.data(&acc_data);
-		gyroscope.data(&gyro_data);
-		compass.data(&compass_data);
-		printf("Acc x val: %d\ty val: %d\tz val: %d\r\n", acc_data.x, acc_data.y, acc_data.z);
-		printf(
-			"Gyroscope x val: %d\ty val: %d\tz val: %d\r\n", gyro_data.x, gyro_data.y, gyro_data.z);
-		printf("Compass x val: %d\ty val: %d\tz val: %d\r\n",
-			compass_data.x,
-			compass_data.y,
-			compass_data.z);
-
+		imu.get_euler_angles(&angles);
+		printf("Pitch: %d\tRoll: %d\r\n", (int32_t)angles.pitch, (int32_t)angles.roll);
 		/* Delay for a period. */
 		vTaskDelay(pdMS_TO_TICKS(100));
 	}

@@ -1,7 +1,11 @@
+#include <math.h>
 #include <stdint.h>
+#include <stdio.h>
 
 #include "i2c.hpp"
 #include "imu.hpp"
+
+const float PI = 3.141592654;
 
 uint8_t i2c_buffer[6];
 
@@ -79,4 +83,24 @@ void HMC5883L::data(hmc5883l_data* data) {
 	data->x = *((int16_t*)i2c_buffer);
 	data->y = *((int16_t*)(i2c_buffer + 2));
 	data->z = *((int16_t*)(i2c_buffer + 4));
+}
+
+IMU::IMU(I2C& i2c_interface)
+	: accelerometer(ADXL345(i2c_interface))
+	, gyroscope(L3G4200D(i2c_interface))
+	, compass(HMC5883L(i2c_interface)) {
+	printf("Accelerometer ID: %X\n", this->accelerometer.id());
+	printf("Gyroscope ID: %X\n", this->gyroscope.id());
+	printf("Compass ID: %X\n", this->compass.id());
+}
+
+void IMU::get_euler_angles(euler_angles* angles) {
+	adxl345_data acc_data;
+	this->accelerometer.data(&acc_data);
+
+	angles->roll = atan2(acc_data.y, acc_data.x);
+	angles->pitch = atan2(-acc_data.x, sqrt(acc_data.y * acc_data.y + acc_data.z * acc_data.z));
+
+	angles->roll = angles->roll * 180 / PI;
+	angles->pitch = angles->pitch * 180 / PI;
 }

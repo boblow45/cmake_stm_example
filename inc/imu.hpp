@@ -83,4 +83,21 @@ public:
 	void data(hmc5883l_data* data);
 };
 
+typedef struct __euler_angles {
+	float pitch;
+	float roll;
+	float yaw;
+} euler_angles;
+
+class IMU {
+private:
+	ADXL345 accelerometer;
+	L3G4200D gyroscope;
+	HMC5883L compass;
+
+public:
+	IMU(I2C& i2c_interface);
+	void get_euler_angles(euler_angles* angles);
+};
+
 #endif
