@@ -15,36 +15,22 @@
 #include "imu.hpp"
 
 void vTask1(void* pvParameters) {
+	uint32_t curr = 0;
 	/* As per most tasks, this task is implemented in an infinite loop. */
 	for(;;) {
-		printf("Task 1 is running\r\n");
-		/* Delay for a period. */
+		if(curr) {
+			BSP_LED_On(LED_GREEN);
+			curr = 0;
+		}
+		else {
+			BSP_LED_Off(LED_GREEN);
+			curr = 1;
+		}
 		vTaskDelay(pdMS_TO_TICKS(250));
 	}
 }
 
 void vTask2(void* pvParameters) {
-	/* As per most tasks, this task is implemented in an infinite loop. */
-	for(;;) {
-		printf("Task 2 is running\r\n");
-
-		/* Delay for a period. */
-		vTaskDelay(pdMS_TO_TICKS(250));
-	}
-}
-
-int main(void) {
-	uint32_t curr = 0;
-	board_init();
-
-	printf("Hello World!\n");
-	printf("System core clock %d\n", SystemCoreClock);
-
-	xTaskCreate(vTask1, "Task 1", 1000, NULL, 2, NULL);
-	xTaskCreate(vTask2, "Task 2", 1000, NULL, 1, NULL);
-
-	vTaskStartScheduler();
-
 	I2C hi2c;
 	ADXL345 accelerometer(hi2c);
 	L3G4200D gyroscope(hi2c);
@@ -56,29 +42,35 @@ int main(void) {
 	printf("Accelerometer ID: %X\n", accelerometer.id());
 	printf("Gyroscope ID: %X\n", gyroscope.id());
 	printf("Compass ID: %X\n", compass.id());
-	while(1) {
-		/* Blink Red LED */
-
+	for(;;) {
 		accelerometer.data(&acc_data);
 		gyroscope.data(&gyro_data);
 		compass.data(&compass_data);
-		printf("Acc x val: %d\ty val: %d\tz val: %d\n", acc_data.x, acc_data.y, acc_data.z);
+		printf("Acc x val: %d\ty val: %d\tz val: %d\r\n", acc_data.x, acc_data.y, acc_data.z);
 		printf(
-			"Gyroscope x val: %d\ty val: %d\tz val: %d\n", gyro_data.x, gyro_data.y, gyro_data.z);
-		printf("Compass x val: %d\ty val: %d\tz val: %d\n",
+			"Gyroscope x val: %d\ty val: %d\tz val: %d\r\n", gyro_data.x, gyro_data.y, gyro_data.z);
+		printf("Compass x val: %d\ty val: %d\tz val: %d\r\n",
 			compass_data.x,
 			compass_data.y,
 			compass_data.z);
 
-		HAL_Delay(100);
-		if(curr) {
-			BSP_LED_On(LED_GREEN);
-			curr = 0;
-		}
-		else {
-			BSP_LED_Off(LED_GREEN);
-			curr = 1;
-		}
+		/* Delay for a period. */
+		vTaskDelay(pdMS_TO_TICKS(100));
+	}
+}
+
+int main(void) {
+
+	board_init();
+
+	printf("System core clock %d\n", SystemCoreClock);
+
+	xTaskCreate(vTask1, "Task 1", 1000, NULL, 1, NULL);
+	xTaskCreate(vTask2, "Task 2", 1000, NULL, 2, NULL);
+
+	vTaskStartScheduler();
+
+	while(1) {
 	}
 	return 0;
 }
