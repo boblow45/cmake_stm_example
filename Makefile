@@ -163,6 +163,33 @@ drivers/hal/src/stm32f7xx_hal.c.s:
 	$(MAKE) -f CMakeFiles/stm_drone.dir/build.make CMakeFiles/stm_drone.dir/drivers/hal/src/stm32f7xx_hal.c.s
 .PHONY : drivers/hal/src/stm32f7xx_hal.c.s
 
+drivers/hal/src/stm32f7xx_hal_adc.obj: drivers/hal/src/stm32f7xx_hal_adc.c.obj
+
+.PHONY : drivers/hal/src/stm32f7xx_hal_adc.obj
+
+# target to build an object file
+drivers/hal/src/stm32f7xx_hal_adc.c.obj:
+	$(MAKE) -f CMakeFiles/stm_drone.dir/build.make CMakeFiles/stm_drone.dir/drivers/hal/src/stm32f7xx_hal_adc.c.obj
+.PHONY : drivers/hal/src/stm32f7xx_hal_adc.c.obj
+
+drivers/hal/src/stm32f7xx_hal_adc.i: drivers/hal/src/stm32f7xx_hal_adc.c.i
+
+.PHONY : drivers/hal/src/stm32f7xx_hal_adc.i
+
+# target to preprocess a source file
+drivers/hal/src/stm32f7xx_hal_adc.c.i:
+	$(MAKE) -f CMakeFiles/stm_drone.dir/build.make CMakeFiles/stm_drone.dir/drivers/hal/src/stm32f7xx_hal_adc.c.i
+.PHONY : drivers/hal/src/stm32f7xx_hal_adc.c.i
+
+drivers/hal/src/stm32f7xx_hal_adc.s: drivers/hal/src/stm32f7xx_hal_adc.c.s
+
+.PHONY : drivers/hal/src/stm32f7xx_hal_adc.s
+
+# target to generate assembly for a file
+drivers/hal/src/stm32f7xx_hal_adc.c.s:
+	$(MAKE) -f CMakeFiles/stm_drone.dir/build.make CMakeFiles/stm_drone.dir/drivers/hal/src/stm32f7xx_hal_adc.c.s
+.PHONY : drivers/hal/src/stm32f7xx_hal_adc.c.s
+
 drivers/hal/src/stm32f7xx_hal_cortex.obj: drivers/hal/src/stm32f7xx_hal_cortex.c.obj
 
 .PHONY : drivers/hal/src/stm32f7xx_hal_cortex.obj
@@ -568,6 +595,33 @@ middleware/FreeRTOS/Source/timers.c.s:
 	$(MAKE) -f CMakeFiles/stm_drone.dir/build.make CMakeFiles/stm_drone.dir/middleware/FreeRTOS/Source/timers.c.s
 .PHONY : middleware/FreeRTOS/Source/timers.c.s
 
+src/adc.obj: src/adc.c.obj
+
+.PHONY : src/adc.obj
+
+# target to build an object file
+src/adc.c.obj:
+	$(MAKE) -f CMakeFiles/stm_drone.dir/build.make CMakeFiles/stm_drone.dir/src/adc.c.obj
+.PHONY : src/adc.c.obj
+
+src/adc.i: src/adc.c.i
+
+.PHONY : src/adc.i
+
+# target to preprocess a source file
+src/adc.c.i:
+	$(MAKE) -f CMakeFiles/stm_drone.dir/build.make CMakeFiles/stm_drone.dir/src/adc.c.i
+.PHONY : src/adc.c.i
+
+src/adc.s: src/adc.c.s
+
+.PHONY : src/adc.s
+
+# target to generate assembly for a file
+src/adc.c.s:
+	$(MAKE) -f CMakeFiles/stm_drone.dir/build.make CMakeFiles/stm_drone.dir/src/adc.c.s
+.PHONY : src/adc.c.s
+
 src/board_config.obj: src/board_config.c.obj
 
 .PHONY : src/board_config.obj
@@ -833,6 +887,9 @@ help:
 	@echo "... drivers/hal/src/stm32f7xx_hal.obj"
 	@echo "... drivers/hal/src/stm32f7xx_hal.i"
 	@echo "... drivers/hal/src/stm32f7xx_hal.s"
+	@echo "... drivers/hal/src/stm32f7xx_hal_adc.obj"
+	@echo "... drivers/hal/src/stm32f7xx_hal_adc.i"
+	@echo "... drivers/hal/src/stm32f7xx_hal_adc.s"
 	@echo "... drivers/hal/src/stm32f7xx_hal_cortex.obj"
 	@echo "... drivers/hal/src/stm32f7xx_hal_cortex.i"
 	@echo "... drivers/hal/src/stm32f7xx_hal_cortex.s"
@@ -878,6 +935,9 @@ help:
 	@echo "... middleware/FreeRTOS/Source/timers.obj"
 	@echo "... middleware/FreeRTOS/Source/timers.i"
 	@echo "... middleware/FreeRTOS/Source/timers.s"
+	@echo "... src/adc.obj"
+	@echo "... src/adc.i"
+	@echo "... src/adc.s"
 	@echo "... src/board_config.obj"
 	@echo "... src/board_config.i"
 	@echo "... src/board_config.s"

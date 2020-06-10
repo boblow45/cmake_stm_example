@@ -96,11 +96,17 @@ IMU::IMU(I2C& i2c_interface)
 
 void IMU::get_euler_angles(euler_angles* angles) {
 	adxl345_data acc_data;
+	hmc5883l_data compass_data;
 	this->accelerometer.data(&acc_data);
+	this->compass.data(&compass_data);
 
 	angles->roll = atan2(acc_data.y, acc_data.x);
 	angles->pitch = atan2(-acc_data.x, sqrt(acc_data.y * acc_data.y + acc_data.z * acc_data.z));
+	angles->yaw = atan2(compass_data.x,
+		(cos(angles->roll) * cos(angles->pitch) * compass_data.y -
+			sin(angles->roll) * cos(angles->pitch) * compass_data.z - compass_data.x));
 
 	angles->roll = angles->roll * 180 / PI;
 	angles->pitch = angles->pitch * 180 / PI;
+	angles->yaw = angles->yaw * 180 / PI;
 }

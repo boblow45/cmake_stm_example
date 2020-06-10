@@ -8,6 +8,8 @@
 #include "main.h"
 #include "stm32f7xx_hal.h"
 
+#include "adc.h"
+
 #include "FreeRTOS.h"
 #include "task.h"
 
@@ -31,13 +33,28 @@ void vTask1(void* pvParameters) {
 }
 
 void vTask2(void* pvParameters) {
+
+	ADC_HandleTypeDef hadc1;
+	MX_ADC1_Init(&hadc1);
+	HAL_ADC_MspInit(&hadc1);
 	I2C hi2c;
 
 	IMU imu(hi2c);
 	euler_angles angles;
+
+	uint32_t adc_val;
+	float voltage;
 	for(;;) {
+		HAL_ADC_Start(&hadc1);
+
+		printf("Poll for con return %d\r\n", HAL_ADC_PollForConversion(&hadc1, 100));
+		HAL_ADC_Stop(&hadc1);
+
+		adc_val = HAL_ADC_GetValue(&hadc1);
+		voltage = ((float)adc_val / (1 << 12)) * 3.3;
+		printf("ADC Voltage:%f\r\n", voltage);
 		imu.get_euler_angles(&angles);
-		printf("Pitch: %d\tRoll: %d\r\n", (int32_t)angles.pitch, (int32_t)angles.roll);
+		printf("Pitch:%3.4f\tRoll:%3.4f\tYaw:%3.4f\r\n", angles.pitch, angles.roll, angles.yaw);
 		/* Delay for a period. */
 		vTaskDelay(pdMS_TO_TICKS(100));
 	}

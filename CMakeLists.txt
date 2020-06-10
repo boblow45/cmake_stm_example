@@ -35,6 +35,7 @@ main.cpp
 "${CMAKE_CURRENT_LIST_DIR}/src/stm32f7xx_it.c"
 "${CMAKE_CURRENT_LIST_DIR}/src/stm32f7xx_hal_msp.c"
 "${CMAKE_CURRENT_LIST_DIR}/src/usart.c"
+"${CMAKE_CURRENT_LIST_DIR}/src/adc.c"
 
 "${CMAKE_CURRENT_LIST_DIR}/src/i2c.cpp"   
 "${CMAKE_CURRENT_LIST_DIR}/src/imu.cpp"   
@@ -55,6 +56,7 @@ main.cpp
 "${CMAKE_CURRENT_LIST_DIR}/drivers/hal/src/stm32f7xx_hal_uart.c"
 "${CMAKE_CURRENT_LIST_DIR}/drivers/hal/src/stm32f7xx_hal_i2c_ex.c"
 "${CMAKE_CURRENT_LIST_DIR}/drivers/hal/src/stm32f7xx_hal_i2c.c"
+"${CMAKE_CURRENT_LIST_DIR}/drivers/hal/src/stm32f7xx_hal_adc.c"
 )
 
 add_executable(${PROJECT_NAME} ${Sources})

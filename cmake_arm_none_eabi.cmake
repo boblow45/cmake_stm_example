@@ -27,7 +27,7 @@ set(EXTRA_OPTIONS       "-Wall -Wextra")
 set(CMAKE_C_FLAGS       "${CMAKE_C_FLAGS} ${ARCH_FLAGS} ${EXTRA_OPTIONS} -fdata-sections -ffunction-sections -fno-builtin" CACHE INTERNAL "")
 set(CMAKE_CXX_FLAGS     "${CMAKE_CXX_FLAGS} ${CMAKE_C_FLAGS} -fno-exceptions -fno-unwind-tables" CACHE INTERNAL "")
 
-set(CMAKE_EXE_LINKER_FLAGS "--specs=nano.specs -Wl,--gc-sections --specs=nosys.specs" CACHE INTERNAL "")
+set(CMAKE_EXE_LINKER_FLAGS "--specs=nano.specs -Wl,--gc-sections --specs=nosys.specs -u _printf_float" CACHE INTERNAL "")
 
 set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
 set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
