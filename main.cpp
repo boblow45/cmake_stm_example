@@ -15,6 +15,21 @@
 
 #include "i2c.hpp"
 #include "imu.hpp"
+#include "pwm.hpp"
+
+void set_PWM(TIM_HandleTypeDef* timer, uint32_t channel, uint16_t freq, float duty) {
+	HAL_TIM_PWM_Stop(timer, channel); // stop generation of pwm
+	TIM_OC_InitTypeDef sConfigOC;
+	timer->Init.Period =
+		HAL_RCC_GetPCLK2Freq() / (timer->Init.Prescaler + 1) / freq; // set the period duration
+	HAL_TIM_PWM_Init(timer); // reinititialise with new period value
+	sConfigOC.OCMode = TIM_OCMODE_PWM1;
+	sConfigOC.Pulse = (uint32_t)(timer->Init.Period * duty / 100); // set the pulse duration
+	sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
+	sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
+	HAL_TIM_PWM_ConfigChannel(timer, &sConfigOC, channel);
+	HAL_TIM_PWM_Start(timer, channel); // start pwm generation
+}
 
 void vTask1(void* pvParameters) {
 	uint32_t curr = 0;
@@ -34,6 +49,10 @@ void vTask1(void* pvParameters) {
 
 void vTask2(void* pvParameters) {
 
+	TIM_HandleTypeDef tim_handle;
+	MX_TIM2_Init(&tim_handle);
+	HAL_TIM_PWM_MspInit(&tim_handle);
+
 	ADC_HandleTypeDef hadc1;
 	MX_ADC1_Init(&hadc1);
 	I2C hi2c;
@@ -43,6 +62,7 @@ void vTask2(void* pvParameters) {
 
 	uint32_t adc_val;
 	float voltage;
+	set_PWM(&tim_handle, TIM_CHANNEL_3, 50, 10.0);
 	for(;;) {
 		HAL_ADC_Start(&hadc1);
 
@@ -63,7 +83,9 @@ int main(void) {
 
 	board_init();
 
-	printf("System core clock %d\n", SystemCoreClock);
+	printf("System core clock %lu\n", HAL_RCC_GetSysClockFreq());
+	printf("PCLK1 %lu\n", HAL_RCC_GetPCLK1Freq());
+	printf("PCLK2 %lu\n", HAL_RCC_GetPCLK2Freq());
 
 	xTaskCreate(vTask1, "Task 1", 1000, NULL, 1, NULL);
 	xTaskCreate(vTask2, "Task 2", 1000, NULL, 2, NULL);

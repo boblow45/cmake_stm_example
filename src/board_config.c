@@ -4,7 +4,6 @@
 #include "board_config.h"
 #include "error_handling.h"
 #include "globals.h"
-// #include "i2c.hpp"
 #include "usart.h"
 
 GPIO_TypeDef* GPIO_PORT[LEDn] = {LED1_GPIO_PORT, LED2_GPIO_PORT, LED3_GPIO_PORT};
@@ -37,6 +36,11 @@ void board_init(void) {
 static void system_clk_config(void) {
 	RCC_ClkInitTypeDef RCC_ClkInitStruct;
 	RCC_OscInitTypeDef RCC_OscInitStruct;
+	RCC_PeriphCLKInitTypeDef PeriphClkInitStruct;
+
+	__HAL_RCC_PWR_CLK_ENABLE();
+
+	__HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE2);
 
 	/* Enable HSE Oscillator and activate PLL with HSE as source */
 	RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
@@ -64,6 +68,19 @@ static void system_clk_config(void) {
 
 	if(HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_7) != HAL_OK)
 		_Error_Handler(__FILE__, __LINE__);
+
+	PeriphClkInitStruct.PeriphClockSelection = RCC_PERIPHCLK_USART3 | RCC_PERIPHCLK_I2C1;
+	PeriphClkInitStruct.PLLSAI.PLLSAIN = 96;
+	PeriphClkInitStruct.PLLSAI.PLLSAIR = 2;
+	PeriphClkInitStruct.PLLSAI.PLLSAIQ = 2;
+	PeriphClkInitStruct.PLLSAI.PLLSAIP = RCC_PLLSAIP_DIV4;
+	PeriphClkInitStruct.PLLSAIDivQ = 1;
+	PeriphClkInitStruct.PLLSAIDivR = RCC_PLLSAIDIVR_2;
+	PeriphClkInitStruct.Usart3ClockSelection = RCC_USART3CLKSOURCE_PCLK1;
+	PeriphClkInitStruct.I2c1ClockSelection = RCC_I2C1CLKSOURCE_PCLK1;
+	if(HAL_RCCEx_PeriphCLKConfig(&PeriphClkInitStruct) != HAL_OK) {
+		_Error_Handler(__FILE__, __LINE__);
+	}
 
 	__HAL_RCC_HSI_DISABLE();
 }

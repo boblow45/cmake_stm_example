@@ -352,6 +352,87 @@ drivers/hal/src/stm32f7xx_hal_rcc.c.s:
 	$(MAKE) -f CMakeFiles/stm_drone.dir/build.make CMakeFiles/stm_drone.dir/drivers/hal/src/stm32f7xx_hal_rcc.c.s
 .PHONY : drivers/hal/src/stm32f7xx_hal_rcc.c.s
 
+drivers/hal/src/stm32f7xx_hal_rcc_ex.obj: drivers/hal/src/stm32f7xx_hal_rcc_ex.c.obj
+
+.PHONY : drivers/hal/src/stm32f7xx_hal_rcc_ex.obj
+
+# target to build an object file
+drivers/hal/src/stm32f7xx_hal_rcc_ex.c.obj:
+	$(MAKE) -f CMakeFiles/stm_drone.dir/build.make CMakeFiles/stm_drone.dir/drivers/hal/src/stm32f7xx_hal_rcc_ex.c.obj
+.PHONY : drivers/hal/src/stm32f7xx_hal_rcc_ex.c.obj
+
+drivers/hal/src/stm32f7xx_hal_rcc_ex.i: drivers/hal/src/stm32f7xx_hal_rcc_ex.c.i
+
+.PHONY : drivers/hal/src/stm32f7xx_hal_rcc_ex.i
+
+# target to preprocess a source file
+drivers/hal/src/stm32f7xx_hal_rcc_ex.c.i:
+	$(MAKE) -f CMakeFiles/stm_drone.dir/build.make CMakeFiles/stm_drone.dir/drivers/hal/src/stm32f7xx_hal_rcc_ex.c.i
+.PHONY : drivers/hal/src/stm32f7xx_hal_rcc_ex.c.i
+
+drivers/hal/src/stm32f7xx_hal_rcc_ex.s: drivers/hal/src/stm32f7xx_hal_rcc_ex.c.s
+
+.PHONY : drivers/hal/src/stm32f7xx_hal_rcc_ex.s
+
+# target to generate assembly for a file
+drivers/hal/src/stm32f7xx_hal_rcc_ex.c.s:
+	$(MAKE) -f CMakeFiles/stm_drone.dir/build.make CMakeFiles/stm_drone.dir/drivers/hal/src/stm32f7xx_hal_rcc_ex.c.s
+.PHONY : drivers/hal/src/stm32f7xx_hal_rcc_ex.c.s
+
+drivers/hal/src/stm32f7xx_hal_tim.obj: drivers/hal/src/stm32f7xx_hal_tim.c.obj
+
+.PHONY : drivers/hal/src/stm32f7xx_hal_tim.obj
+
+# target to build an object file
+drivers/hal/src/stm32f7xx_hal_tim.c.obj:
+	$(MAKE) -f CMakeFiles/stm_drone.dir/build.make CMakeFiles/stm_drone.dir/drivers/hal/src/stm32f7xx_hal_tim.c.obj
+.PHONY : drivers/hal/src/stm32f7xx_hal_tim.c.obj
+
+drivers/hal/src/stm32f7xx_hal_tim.i: drivers/hal/src/stm32f7xx_hal_tim.c.i
+
+.PHONY : drivers/hal/src/stm32f7xx_hal_tim.i
+
+# target to preprocess a source file
+drivers/hal/src/stm32f7xx_hal_tim.c.i:
+	$(MAKE) -f CMakeFiles/stm_drone.dir/build.make CMakeFiles/stm_drone.dir/drivers/hal/src/stm32f7xx_hal_tim.c.i
+.PHONY : drivers/hal/src/stm32f7xx_hal_tim.c.i
+
+drivers/hal/src/stm32f7xx_hal_tim.s: drivers/hal/src/stm32f7xx_hal_tim.c.s
+
+.PHONY : drivers/hal/src/stm32f7xx_hal_tim.s
+
+# target to generate assembly for a file
+drivers/hal/src/stm32f7xx_hal_tim.c.s:
+	$(MAKE) -f CMakeFiles/stm_drone.dir/build.make CMakeFiles/stm_drone.dir/drivers/hal/src/stm32f7xx_hal_tim.c.s
+.PHONY : drivers/hal/src/stm32f7xx_hal_tim.c.s
+
+drivers/hal/src/stm32f7xx_hal_tim_ex.obj: drivers/hal/src/stm32f7xx_hal_tim_ex.c.obj
+
+.PHONY : drivers/hal/src/stm32f7xx_hal_tim_ex.obj
+
+# target to build an object file
+drivers/hal/src/stm32f7xx_hal_tim_ex.c.obj:
+	$(MAKE) -f CMakeFiles/stm_drone.dir/build.make CMakeFiles/stm_drone.dir/drivers/hal/src/stm32f7xx_hal_tim_ex.c.obj
+.PHONY : drivers/hal/src/stm32f7xx_hal_tim_ex.c.obj
+
+drivers/hal/src/stm32f7xx_hal_tim_ex.i: drivers/hal/src/stm32f7xx_hal_tim_ex.c.i
+
+.PHONY : drivers/hal/src/stm32f7xx_hal_tim_ex.i
+
+# target to preprocess a source file
+drivers/hal/src/stm32f7xx_hal_tim_ex.c.i:
+	$(MAKE) -f CMakeFiles/stm_drone.dir/build.make CMakeFiles/stm_drone.dir/drivers/hal/src/stm32f7xx_hal_tim_ex.c.i
+.PHONY : drivers/hal/src/stm32f7xx_hal_tim_ex.c.i
+
+drivers/hal/src/stm32f7xx_hal_tim_ex.s: drivers/hal/src/stm32f7xx_hal_tim_ex.c.s
+
+.PHONY : drivers/hal/src/stm32f7xx_hal_tim_ex.s
+
+# target to generate assembly for a file
+drivers/hal/src/stm32f7xx_hal_tim_ex.c.s:
+	$(MAKE) -f CMakeFiles/stm_drone.dir/build.make CMakeFiles/stm_drone.dir/drivers/hal/src/stm32f7xx_hal_tim_ex.c.s
+.PHONY : drivers/hal/src/stm32f7xx_hal_tim_ex.c.s
+
 drivers/hal/src/stm32f7xx_hal_uart.obj: drivers/hal/src/stm32f7xx_hal_uart.c.obj
 
 .PHONY : drivers/hal/src/stm32f7xx_hal_uart.obj
@@ -730,6 +811,33 @@ src/imu.cpp.s:
 	$(MAKE) -f CMakeFiles/stm_drone.dir/build.make CMakeFiles/stm_drone.dir/src/imu.cpp.s
 .PHONY : src/imu.cpp.s
 
+src/pwm.obj: src/pwm.cpp.obj
+
+.PHONY : src/pwm.obj
+
+# target to build an object file
+src/pwm.cpp.obj:
+	$(MAKE) -f CMakeFiles/stm_drone.dir/build.make CMakeFiles/stm_drone.dir/src/pwm.cpp.obj
+.PHONY : src/pwm.cpp.obj
+
+src/pwm.i: src/pwm.cpp.i
+
+.PHONY : src/pwm.i
+
+# target to preprocess a source file
+src/pwm.cpp.i:
+	$(MAKE) -f CMakeFiles/stm_drone.dir/build.make CMakeFiles/stm_drone.dir/src/pwm.cpp.i
+.PHONY : src/pwm.cpp.i
+
+src/pwm.s: src/pwm.cpp.s
+
+.PHONY : src/pwm.s
+
+# target to generate assembly for a file
+src/pwm.cpp.s:
+	$(MAKE) -f CMakeFiles/stm_drone.dir/build.make CMakeFiles/stm_drone.dir/src/pwm.cpp.s
+.PHONY : src/pwm.cpp.s
+
 src/retarget.obj: src/retarget.c.obj
 
 .PHONY : src/retarget.obj
@@ -908,6 +1016,15 @@ help:
 	@echo "... drivers/hal/src/stm32f7xx_hal_rcc.obj"
 	@echo "... drivers/hal/src/stm32f7xx_hal_rcc.i"
 	@echo "... drivers/hal/src/stm32f7xx_hal_rcc.s"
+	@echo "... drivers/hal/src/stm32f7xx_hal_rcc_ex.obj"
+	@echo "... drivers/hal/src/stm32f7xx_hal_rcc_ex.i"
+	@echo "... drivers/hal/src/stm32f7xx_hal_rcc_ex.s"
+	@echo "... drivers/hal/src/stm32f7xx_hal_tim.obj"
+	@echo "... drivers/hal/src/stm32f7xx_hal_tim.i"
+	@echo "... drivers/hal/src/stm32f7xx_hal_tim.s"
+	@echo "... drivers/hal/src/stm32f7xx_hal_tim_ex.obj"
+	@echo "... drivers/hal/src/stm32f7xx_hal_tim_ex.i"
+	@echo "... drivers/hal/src/stm32f7xx_hal_tim_ex.s"
 	@echo "... drivers/hal/src/stm32f7xx_hal_uart.obj"
 	@echo "... drivers/hal/src/stm32f7xx_hal_uart.i"
 	@echo "... drivers/hal/src/stm32f7xx_hal_uart.s"
@@ -950,6 +1067,9 @@ help:
 	@echo "... src/imu.obj"
 	@echo "... src/imu.i"
 	@echo "... src/imu.s"
+	@echo "... src/pwm.obj"
+	@echo "... src/pwm.i"
+	@echo "... src/pwm.s"
 	@echo "... src/retarget.obj"
 	@echo "... src/retarget.i"
 	@echo "... src/retarget.s"
