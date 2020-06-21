@@ -39,6 +39,7 @@ main.cpp
 
 "${CMAKE_CURRENT_LIST_DIR}/src/i2c.cpp"   
 "${CMAKE_CURRENT_LIST_DIR}/src/imu.cpp"   
+"${CMAKE_CURRENT_LIST_DIR}/src/pwm.cpp"   
 
 "${CMAKE_CURRENT_LIST_DIR}/middleware/FreeRTOS/Source/tasks.c"
 "${CMAKE_CURRENT_LIST_DIR}/middleware/FreeRTOS/Source/queue.c"
@@ -50,6 +51,7 @@ main.cpp
 
 "${CMAKE_CURRENT_LIST_DIR}/drivers/hal/src/stm32f7xx_hal.c"    
 "${CMAKE_CURRENT_LIST_DIR}/drivers/hal/src/stm32f7xx_hal_rcc.c"
+"${CMAKE_CURRENT_LIST_DIR}/drivers/hal/src/stm32f7xx_hal_rcc_ex.c"
 "${CMAKE_CURRENT_LIST_DIR}/drivers/hal/src/stm32f7xx_hal_gpio.c"
 "${CMAKE_CURRENT_LIST_DIR}/drivers/hal/src/stm32f7xx_hal_cortex.c"
 "${CMAKE_CURRENT_LIST_DIR}/drivers/hal/src/stm32f7xx_hal_dma.c"
@@ -57,6 +59,8 @@ main.cpp
 "${CMAKE_CURRENT_LIST_DIR}/drivers/hal/src/stm32f7xx_hal_i2c_ex.c"
 "${CMAKE_CURRENT_LIST_DIR}/drivers/hal/src/stm32f7xx_hal_i2c.c"
 "${CMAKE_CURRENT_LIST_DIR}/drivers/hal/src/stm32f7xx_hal_adc.c"
+"${CMAKE_CURRENT_LIST_DIR}/drivers/hal/src/stm32f7xx_hal_tim.c"
+"${CMAKE_CURRENT_LIST_DIR}/drivers/hal/src/stm32f7xx_hal_tim_ex.c"
 )
 
 add_executable(${PROJECT_NAME} ${Sources})
