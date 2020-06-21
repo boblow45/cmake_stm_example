@@ -82,6 +82,7 @@ void MX_ADC1_Init(ADC_HandleTypeDef* adcHandle) {
 	__HAL_RCC_ADC1_CLK_ENABLE();
 
 	printf("configured ADC1 struct\r\n");
+	adcHandle->State = HAL_ADC_STATE_RESET;
 	adcHandle->Instance = ADC1;
 	adcHandle->Init.ClockPrescaler = ADC_CLOCK_SYNC_PCLK_DIV4;
 	adcHandle->Init.Resolution = ADC_RESOLUTION_12B;

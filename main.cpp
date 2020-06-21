@@ -36,7 +36,6 @@ void vTask2(void* pvParameters) {
 
 	ADC_HandleTypeDef hadc1;
 	MX_ADC1_Init(&hadc1);
-	HAL_ADC_MspInit(&hadc1);
 	I2C hi2c;
 
 	IMU imu(hi2c);
@@ -47,14 +46,14 @@ void vTask2(void* pvParameters) {
 	for(;;) {
 		HAL_ADC_Start(&hadc1);
 
-		printf("Poll for con return %d\r\n", HAL_ADC_PollForConversion(&hadc1, 100));
+		HAL_ADC_PollForConversion(&hadc1, 100);
 		HAL_ADC_Stop(&hadc1);
 
 		adc_val = HAL_ADC_GetValue(&hadc1);
 		voltage = ((float)adc_val / (1 << 12)) * 3.3;
 		printf("ADC Voltage:%f\r\n", voltage);
 		imu.get_euler_angles(&angles);
-		printf("Pitch:%3.4f\tRoll:%3.4f\tYaw:%3.4f\r\n", angles.pitch, angles.roll, angles.yaw);
+		// printf("Pitch:%3.4f\tRoll:%3.4f\tYaw:%3.4f\r\n", angles.pitch, angles.roll, angles.yaw);
 		/* Delay for a period. */
 		vTaskDelay(pdMS_TO_TICKS(100));
 	}
