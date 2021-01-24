@@ -1,11 +1,12 @@
 #include <stdio.h>
 
+#include "globals.h"
+
 #include "board_config.h"
 #include "main.h"
 #include "stm32f7xx_hal.h"
 #include "stm32f7xx_nucleo_144_BSP.h"
 
-#include "globals.h"
 #include "usart.h"
 
 int main(void) {

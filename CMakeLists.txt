@@ -20,8 +20,21 @@ include_directories (
     
 set(LDSCRIPTS "${CMAKE_CURRENT_LIST_DIR}/ldscripts/gcc.ld")
 
+set(Headers
+    "${CMAKE_CURRENT_LIST_DIR}/inc/board_config.h"
+    "${CMAKE_CURRENT_LIST_DIR}/inc/defines.h"
+    "${CMAKE_CURRENT_LIST_DIR}/inc/error_handling.h"
+    "${CMAKE_CURRENT_LIST_DIR}/inc/globals.h"
+    "${CMAKE_CURRENT_LIST_DIR}/inc/main.h"
+    "${CMAKE_CURRENT_LIST_DIR}/inc/stm32f7xx_hal_conf.h"
+    "${CMAKE_CURRENT_LIST_DIR}/inc/stm32f7xx_it.h"
+    "${CMAKE_CURRENT_LIST_DIR}/inc/stm32f7xx_nucleo_144_BSP.h"
+    "${CMAKE_CURRENT_LIST_DIR}/inc/usart.h"
+    )
+
 set(Sources
-main.cpp
+
+"${CMAKE_CURRENT_LIST_DIR}/main.cpp"
 
 "${CMAKE_CURRENT_LIST_DIR}/startup/startup_ARMCM7.S"
 "${CMAKE_CURRENT_LIST_DIR}/src/board_config.c"
@@ -30,6 +43,7 @@ main.cpp
 "${CMAKE_CURRENT_LIST_DIR}/src/stm32f7xx_it.c"
 "${CMAKE_CURRENT_LIST_DIR}/src/stm32f7xx_hal_msp.c"
 "${CMAKE_CURRENT_LIST_DIR}/src/usart.c"
+"${CMAKE_CURRENT_LIST_DIR}/src/globals.c"
 "${CMAKE_CURRENT_LIST_DIR}/src/retarget.c"                 
 "${CMAKE_CURRENT_LIST_DIR}/drivers/hal/src/stm32f7xx_hal.c"    
 "${CMAKE_CURRENT_LIST_DIR}/drivers/hal/src/stm32f7xx_hal_rcc.c"
@@ -40,7 +54,7 @@ main.cpp
 "${CMAKE_CURRENT_LIST_DIR}/drivers/hal/src/stm32f7xx_hal_i2c.c"
 )
 
-add_executable(${PROJECT_NAME} ${Sources})
+add_executable(${PROJECT_NAME} ${Sources} ${Headers})
 
 target_link_libraries(${PROJECT_NAME}
                         -Wl,-Map=${PROJECT_NAME}.map
