@@ -5,6 +5,9 @@ cmake_minimum_required(VERSION 3.12)
 set(PROJECT_NAME stm_drone)
 set(CMAKE_BUILD_TYPE RELEASE)
 
+set(CMAKE_C_COMPILER_WORKS 1)
+set(CMAKE_CXX_COMPILER_WORKS 1)
+set(CMAKE_ASM_COMPILER_WORKS 1)
 project(${PROJECT_NAME} ASM C CXX)
 set(CMAKE_C_STANDARD 99)
 set(CMAKE_CXX_STANDARD 11)
@@ -79,7 +82,8 @@ set_property(DIRECTORY PROPERTY ADDITIONAL_MAKE_CLEAN_FILES
    "${CMAKE_CURRENT_SOURCE_DIR}/${PROJECT_NAME}.elf")
 
 add_custom_target(flash
-COMMAND JLink -device STM32F767ZI -if SWD -speed 4000 -autoconnect 1 -CommanderScript ./j-link/flash.jlink 
+# COMMAND JLink -device STM32F767ZI -if SWD -speed 4000 -autoconnect 1 -CommanderScript ${CMAKE_CURRENT_LIST_DIR}/j-link/flash.jlink 
+COMMAND JLinkExe -device STM32F767ZI -if SWD -speed 4000 -autoconnect 1 -CommanderScript ${CMAKE_CURRENT_LIST_DIR}/j-link/flash.jlink 
 DEPENDS ${PROJECT_NAME}
 )
     
