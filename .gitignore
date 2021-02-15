@@ -15,7 +15,7 @@ googletest-src/
 
 # Vs code #
 ###########
-.vscode/
+#.vscode/
 
 # Skip the regmap directory#
 ############################

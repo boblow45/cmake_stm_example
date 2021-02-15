@@ -3,7 +3,8 @@ cmake_minimum_required(VERSION 3.12)
 
 # Set the variable "This", which will be used as the project name through out this file
 set(PROJECT_NAME stm_drone)
-set(CMAKE_BUILD_TYPE RELEASE)
+# set(CMAKE_BUILD_TYPE RELEASE)
+set(CMAKE_BUILD_TYPE DEBUG)
 
 set(CMAKE_C_COMPILER_WORKS 1)
 set(CMAKE_CXX_COMPILER_WORKS 1)

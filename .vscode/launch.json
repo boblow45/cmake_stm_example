@@ -1,0 +1,17 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug (J-Link)",
+            "cwd": "${workspaceRoot}",
+            "executable": "${workspaceRoot}/build/stm_drone.elf",
+            "request": "launch",
+            "type": "cortex-debug",
+            "servertype": "jlink",
+            "interface": "swd",
+            "device": "STM32F767ZI",
+            "runToMain": true,
+            "svdFile": "${workspaceRoot}/svd/stm32f7x7.svd",
+        }
+    ]
+}
