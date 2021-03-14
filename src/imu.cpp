@@ -88,11 +88,7 @@ void HMC5883L::data(hmc5883l_data* data) {
 IMU::IMU(I2C& i2c_interface)
 	: accelerometer(ADXL345(i2c_interface))
 	, gyroscope(L3G4200D(i2c_interface))
-	, compass(HMC5883L(i2c_interface)) {
-	printf("Accelerometer ID: %X\n", this->accelerometer.id());
-	printf("Gyroscope ID: %X\n", this->gyroscope.id());
-	printf("Compass ID: %X\n", this->compass.id());
-}
+	, compass(HMC5883L(i2c_interface)) { }
 
 void IMU::get_euler_angles(euler_angles* angles) {
 	adxl345_data acc_data;
@@ -102,17 +98,6 @@ void IMU::get_euler_angles(euler_angles* angles) {
 	this->accelerometer.data(&acc_data);
 	this->compass.data(&compass_data);
 	this->gyroscope.data(&gyro_data);
-
-	printf("ax:%d,ay:%d,az:%d,gx:%d,gy:%d,gz:%d,mx:%d,my:%d,mz:%d\r\n",
-		acc_data.x,
-		acc_data.y,
-		acc_data.z,
-		gyro_data.x,
-		gyro_data.y,
-		gyro_data.z,
-		compass_data.x,
-		compass_data.y,
-		compass_data.z);
 
 	angles->roll = atan2(acc_data.y, acc_data.x);
 	angles->pitch = atan2(-acc_data.x, sqrt(acc_data.y * acc_data.y + acc_data.z * acc_data.z));

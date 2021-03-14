@@ -3,7 +3,7 @@
 # Install tools to compile code
 sudo apt-get install gcc-arm-none-eabi binutils-arm-none-eabi openocd -y
 
-wget https://www.segger.com/downloads/jlink/JLink_Linux_V695_x86_64.deb
+wget https://www.segger.com/downloads/jlink/JLink_Linux_V698b_x86_64.deb
 sudo dpkg -i JLink*.deb
 rm JLink*.deb
 
