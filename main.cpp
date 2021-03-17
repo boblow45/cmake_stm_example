@@ -66,6 +66,7 @@ void vTask2(void* pvParameters) {
 	float voltage;
 	// set_PWM(&tim_handle, TIM_CHANNEL_1, 255, 10);
 	for(;;) {
+
 		HAL_ADC_Start(&hadc1);
 
 		HAL_ADC_Stop(&hadc1);
