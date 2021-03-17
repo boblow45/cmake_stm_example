@@ -1,14 +1,24 @@
 #include <cstdint>
+#include <gmock/gmock.h>
+#include <gtest/gtest.h>
 
 #include "CppUTest/TestHarness.h"
-// #include "gmock/gmock.h"
+#include "CppUTestExt/MockSupport.h"
 
 #include "i2c.hpp"
 #include "imu.hpp"
 
 using namespace std;
 
-TEST_GROUP(IMUTest){};
+TEST_GROUP(IMUTest){
+
+	// clang-format off
+	void teardown(){
+		mock().clear();
+	}
+// clang-format on
+}
+;
 
 TEST(IMUTest, TestAcc) {
 
