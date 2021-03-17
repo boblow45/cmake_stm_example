@@ -1,92 +1,104 @@
-include("cmake_arm_none_eabi.cmake")
 cmake_minimum_required(VERSION 3.12)
 
-# Set the variable "This", which will be used as the project name through out this file
 set(PROJECT_NAME stm_drone)
 set(CMAKE_BUILD_TYPE RELEASE)
 
 project(${PROJECT_NAME} ASM C CXX)
 set(CMAKE_C_STANDARD 99)
 set(CMAKE_CXX_STANDARD 11)
-set(CMAKE_EXECUTABLE_SUFFIX ".elf")
 
-# Add directories of any header files which will be used in the project
-include_directories (
-    ${CMAKE_CURRENT_LIST_DIR}/drivers/cmsis/arm
-    ${CMAKE_CURRENT_LIST_DIR}/drivers/cmsis/device
-    ${CMAKE_CURRENT_LIST_DIR}/drivers/hal/inc
-    ${CMAKE_CURRENT_LIST_DIR}/inc
+if (CMAKE_CROSSCOMPILING)
+    include("cmake_arm_none_eabi.cmake")
+
+    # Set the variable "This", which will be used as the project name through out this file
+    set(CMAKE_EXECUTABLE_SUFFIX ".elf")
+
+    # Add directories of any header files which will be used in the project
+    include_directories (
+        ${CMAKE_CURRENT_LIST_DIR}/drivers/cmsis/arm
+        ${CMAKE_CURRENT_LIST_DIR}/drivers/cmsis/device
+        ${CMAKE_CURRENT_LIST_DIR}/drivers/hal/inc
+        ${CMAKE_CURRENT_LIST_DIR}/inc
+        )
+        
+    set(LDSCRIPTS "${CMAKE_CURRENT_LIST_DIR}/ldscripts/gcc.ld")
+
+    set(Headers
+        "${CMAKE_CURRENT_LIST_DIR}/inc/board_config.h"
+        "${CMAKE_CURRENT_LIST_DIR}/inc/defines.h"
+        "${CMAKE_CURRENT_LIST_DIR}/inc/error_handling.h"
+        "${CMAKE_CURRENT_LIST_DIR}/inc/globals.h"
+        "${CMAKE_CURRENT_LIST_DIR}/inc/main.h"
+        "${CMAKE_CURRENT_LIST_DIR}/inc/stm32f7xx_hal_conf.h"
+        "${CMAKE_CURRENT_LIST_DIR}/inc/stm32f7xx_it.h"
+        "${CMAKE_CURRENT_LIST_DIR}/inc/stm32f7xx_nucleo_144_BSP.h"
+        "${CMAKE_CURRENT_LIST_DIR}/inc/usart.h"
+        )
+
+    set(Sources
+
+    "${CMAKE_CURRENT_LIST_DIR}/main.cpp"
+
+    "${CMAKE_CURRENT_LIST_DIR}/startup/startup_ARMCM7.S"
+    "${CMAKE_CURRENT_LIST_DIR}/src/board_config.c"
+    "${CMAKE_CURRENT_LIST_DIR}/src/error_handling.c"
+    "${CMAKE_CURRENT_LIST_DIR}/src/system_stm32f7xx.c"
+    "${CMAKE_CURRENT_LIST_DIR}/src/stm32f7xx_it.c"
+    "${CMAKE_CURRENT_LIST_DIR}/src/stm32f7xx_hal_msp.c"
+    "${CMAKE_CURRENT_LIST_DIR}/src/usart.c"
+    "${CMAKE_CURRENT_LIST_DIR}/src/globals.c"
+    "${CMAKE_CURRENT_LIST_DIR}/src/retarget.c"                 
+    "${CMAKE_CURRENT_LIST_DIR}/drivers/hal/src/stm32f7xx_hal.c"    
+    "${CMAKE_CURRENT_LIST_DIR}/drivers/hal/src/stm32f7xx_hal_rcc.c"
+    "${CMAKE_CURRENT_LIST_DIR}/drivers/hal/src/stm32f7xx_hal_gpio.c"
+    "${CMAKE_CURRENT_LIST_DIR}/drivers/hal/src/stm32f7xx_hal_cortex.c"
+    "${CMAKE_CURRENT_LIST_DIR}/drivers/hal/src/stm32f7xx_hal_dma.c"
+    "${CMAKE_CURRENT_LIST_DIR}/drivers/hal/src/stm32f7xx_hal_uart.c"
+    "${CMAKE_CURRENT_LIST_DIR}/drivers/hal/src/stm32f7xx_hal_i2c.c"
     )
-    
-set(LDSCRIPTS "${CMAKE_CURRENT_LIST_DIR}/ldscripts/gcc.ld")
 
-set(Headers
-    "${CMAKE_CURRENT_LIST_DIR}/inc/board_config.h"
-    "${CMAKE_CURRENT_LIST_DIR}/inc/defines.h"
-    "${CMAKE_CURRENT_LIST_DIR}/inc/error_handling.h"
-    "${CMAKE_CURRENT_LIST_DIR}/inc/globals.h"
-    "${CMAKE_CURRENT_LIST_DIR}/inc/main.h"
-    "${CMAKE_CURRENT_LIST_DIR}/inc/stm32f7xx_hal_conf.h"
-    "${CMAKE_CURRENT_LIST_DIR}/inc/stm32f7xx_it.h"
-    "${CMAKE_CURRENT_LIST_DIR}/inc/stm32f7xx_nucleo_144_BSP.h"
-    "${CMAKE_CURRENT_LIST_DIR}/inc/usart.h"
+    add_executable(${PROJECT_NAME} ${Sources} ${Headers})
+
+    target_link_libraries(${PROJECT_NAME}
+                            -Wl,-Map=${PROJECT_NAME}.map
+                            -T ${LDSCRIPTS}
     )
 
-set(Sources
+    add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD COMMAND ${CMAKE_SIZE} ${PROJECT_NAME}.elf COMMENT "Calculating the size of the bin file")
+    add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD COMMAND ${CMAKE_OBJCOPY} -O binary ${PROJECT_NAME}.elf ${PROJECT_NAME}.bin COMMENT "Converting ELF to binary")
 
-"${CMAKE_CURRENT_LIST_DIR}/main.cpp"
+    add_custom_target(flash
+    COMMAND JLink -device STM32F767ZI -if SWD -speed 4000 -autoconnect 1 -CommanderScript ./j-link/flash.jlink 
+    DEPENDS ${PROJECT_NAME}
+    )
+else()
+    include_directories (
+                        "./inc"
+                        "./src"
+    )
 
-"${CMAKE_CURRENT_LIST_DIR}/startup/startup_ARMCM7.S"
-"${CMAKE_CURRENT_LIST_DIR}/src/board_config.c"
-"${CMAKE_CURRENT_LIST_DIR}/src/error_handling.c"
-"${CMAKE_CURRENT_LIST_DIR}/src/system_stm32f7xx.c"
-"${CMAKE_CURRENT_LIST_DIR}/src/stm32f7xx_it.c"
-"${CMAKE_CURRENT_LIST_DIR}/src/stm32f7xx_hal_msp.c"
-"${CMAKE_CURRENT_LIST_DIR}/src/usart.c"
-"${CMAKE_CURRENT_LIST_DIR}/src/globals.c"
-"${CMAKE_CURRENT_LIST_DIR}/src/retarget.c"                 
-"${CMAKE_CURRENT_LIST_DIR}/drivers/hal/src/stm32f7xx_hal.c"    
-"${CMAKE_CURRENT_LIST_DIR}/drivers/hal/src/stm32f7xx_hal_rcc.c"
-"${CMAKE_CURRENT_LIST_DIR}/drivers/hal/src/stm32f7xx_hal_gpio.c"
-"${CMAKE_CURRENT_LIST_DIR}/drivers/hal/src/stm32f7xx_hal_cortex.c"
-"${CMAKE_CURRENT_LIST_DIR}/drivers/hal/src/stm32f7xx_hal_dma.c"
-"${CMAKE_CURRENT_LIST_DIR}/drivers/hal/src/stm32f7xx_hal_uart.c"
-"${CMAKE_CURRENT_LIST_DIR}/drivers/hal/src/stm32f7xx_hal_i2c.c"
-)
 
-add_executable(${PROJECT_NAME} ${Sources} ${Headers})
+    set(Headers
+        "${CMAKE_CURRENT_LIST_DIR}/inc/defines.h"
+        "${CMAKE_CURRENT_LIST_DIR}/inc/circular_buffer.h"
+    )
 
-target_link_libraries(${PROJECT_NAME}
-                        -Wl,-Map=${PROJECT_NAME}.map
-                        -T ${LDSCRIPTS}
-)
+    set(Sources
+        "${CMAKE_CURRENT_LIST_DIR}/src/circular_buffer.c"
+    )
 
-add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD COMMAND ${CMAKE_SIZE} ${PROJECT_NAME}.elf COMMENT "Calculating the size of the bin file")
-add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD COMMAND ${CMAKE_OBJCOPY} -O binary ${PROJECT_NAME}.elf ${PROJECT_NAME}.bin COMMENT "Converting ELF to binary")
-
-add_custom_target(flash
-COMMAND JLink -device STM32F767ZI -if SWD -speed 4000 -autoconnect 1 -CommanderScript ./j-link/flash.jlink 
-DEPENDS ${PROJECT_NAME}
-)
+    add_library(${PROJECT_NAME} STATIC ${Sources} ${Headers})
     
-# enable_testing()
-# # Download and unpack googletest at configure time
-# configure_file(CMakeLists.txt.in googletest-download/CMakeLists.txt)
-# execute_process(COMMAND "${CMAKE_COMMAND}" -G "${CMAKE_GENERATOR}" .
-#     WORKING_DIRECTORY "${CMAKE_BINARY_DIR}/googletest-download"
-# )
-# execute_process(COMMAND "${CMAKE_COMMAND}" --build .
-#     WORKING_DIRECTORY "${CMAKE_BINARY_DIR}/googletest-download"
-# )
-    
-# # Prevent GoogleTest from overriding our compiler/linker options
-# set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+    enable_testing()
 
-# # Add googletest directly to our build. This adds the following targets:
-# # gtest, gtest_main, gmock and gmock_main
-# add_subdirectory("${CMAKE_BINARY_DIR}/googletest-src"
-#                  "${CMAKE_BINARY_DIR}/googletest-build"
-# )
-# # Add the test directory as a subdirectory. This directory will contain another cmake file
-# # which will build the tests 
-# add_subdirectory(test)
+    # Download and unpack googletest at configure time
+    configure_file(CMakeLists.txt.in googletest-download/CMakeLists.txt)
+    execute_process(COMMAND "${CMAKE_COMMAND}" -G "${CMAKE_GENERATOR}" .
+        WORKING_DIRECTORY "${CMAKE_BINARY_DIR}/googletest-download"
+    )
+
+
+    # Add the test directory as a subdirectory. This directory will contain another cmake file
+    # which will build the tests 
+    add_subdirectory(test)
+endif()
