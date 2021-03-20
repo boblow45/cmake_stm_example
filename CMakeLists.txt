@@ -25,22 +25,6 @@ if (CMAKE_CROSSCOMPILING)
         
     set(LDSCRIPTS "${CMAKE_CURRENT_LIST_DIR}/ldscripts/gcc.ld")
 
-    # set(Headers
-    #     "${CMAKE_CURRENT_LIST_DIR}/inc/board_config.h"
-    #     "${CMAKE_CURRENT_LIST_DIR}/inc/defines.h"
-    #     "${CMAKE_CURRENT_LIST_DIR}/inc/error_handling.h"
-    #     "${CMAKE_CURRENT_LIST_DIR}/inc/globals.h"
-    #     "${CMAKE_CURRENT_LIST_DIR}/inc/main.h"
-    #     "${CMAKE_CURRENT_LIST_DIR}/inc/stm32f7xx_hal_conf.h"
-    #     "${CMAKE_CURRENT_LIST_DIR}/inc/stm32f7xx_it.h"
-    #     "${CMAKE_CURRENT_LIST_DIR}/inc/stm32f7xx_nucleo_144_BSP.h"
-    #     "${CMAKE_CURRENT_LIST_DIR}/inc/usart.h"
-
-    #     "${CMAKE_CURRENT_LIST_DIR}/inc/i2c.hpp"
-    #     "${CMAKE_CURRENT_LIST_DIR}/inc/imu.hpp"
-    #     "${CMAKE_CURRENT_LIST_DIR}/inc/usart.h"
-    #     )
-
     set(Sources
     
         "${CMAKE_CURRENT_LIST_DIR}/startup/startup_ARMCM7.S"
@@ -93,7 +77,7 @@ if (CMAKE_CROSSCOMPILING)
     add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD COMMAND ${CMAKE_OBJCOPY} -O binary ${PROJECT_NAME}.elf ${PROJECT_NAME}.bin COMMENT "Converting ELF to binary")
 
     add_custom_target(flash
-    COMMAND JLinkExe -device STM32F767ZI -if SWD -speed 4000 -autoconnect 1 -CommanderScript ./j-link/flash.jlink 
+    COMMAND JLinkExe -device STM32F767ZI -if SWD -speed 4000 -autoconnect 1 -CommanderScript ${CMAKE_CURRENT_LIST_DIR}/j-link/flash.jlink 
     DEPENDS ${PROJECT_NAME}
     )
 else()
