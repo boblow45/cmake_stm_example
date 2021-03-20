@@ -1,0 +1,9 @@
+{
+    "recommendations": [
+        "marus25.cortex-debug",
+        "xaver.clang-format",
+        "ms-vscode.cmake-tools",
+        "cschlosser.doxdocgen",
+        "twxs.cmake"
+    ]
+}

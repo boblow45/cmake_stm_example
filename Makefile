@@ -40,7 +40,12 @@ clean: ## Remove all cmake builds
 
 cmake_target: 	## Create crosscompile build scripts
 	mkdir -p $(BUILD_DIR_TARGET)
+ifneq ($(DEBUG),)
+	cd $(BUILD_DIR_TARGET) && cmake .. -DCMAKE_TOOLCHAIN_FILE=./cmake_arm_none_eabi.cmake -DCMAKE_BUILD_TYPE=Debug
+else
+	# cd $(BUILD_DIR_TARGET) && cmake .. -DCMAKE_TOOLCHAIN_FILE=./cmake_arm_none_eabi.cmake -DCMAKE_BUILD_TYPE=Release
 	cd $(BUILD_DIR_TARGET) && cmake .. -DCMAKE_TOOLCHAIN_FILE=./cmake_arm_none_eabi.cmake
+endif 
 .PHONY: cmake_target
 
 cmake_host:	## Create build scripts for host machine

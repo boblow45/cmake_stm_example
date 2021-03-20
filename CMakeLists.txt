@@ -1,7 +1,6 @@
 cmake_minimum_required(VERSION 3.12)
 
 set(PROJECT_NAME stm_drone)
-set(CMAKE_BUILD_TYPE DEBUG)
 
 project(${PROJECT_NAME} ASM C CXX) 
 set(CMAKE_C_STANDARD 99)
