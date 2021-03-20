@@ -35,7 +35,8 @@ add_executable(${this} ${Sources} ${Headers})
 
 # Link google test framework and the static lib of our code which we are about to test 
 target_link_libraries(${this} PUBLIC
-    gtest_main
+    gtest
+    gmock_main
     ${PRO_NAME}
 )
 

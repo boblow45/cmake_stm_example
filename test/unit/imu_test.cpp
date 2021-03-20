@@ -4,7 +4,9 @@
 extern "C"
 { }
 
-#include <gtest/gtest.h>
+#include "gmock/gmock.h"
+#include "gtest/gtest.h"
+#include <cstdint> // include this header for uint64_t
 
 TEST(IMUTest, TestAcc) {
 	I2C i2c;
