@@ -6,6 +6,8 @@ extern "C"
 {
 #endif
 
+#include <stdint.h>
+
 	extern volatile unsigned int ticks;
 
 #ifdef __cplusplus

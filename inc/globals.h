@@ -6,6 +6,10 @@ extern "C"
 {
 #endif
 
+#include "stm32f7xx_hal.h"
+
+	UART_HandleTypeDef huart3;
+
 #ifdef __cplusplus
 }
 #endif

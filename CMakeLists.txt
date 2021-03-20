@@ -19,45 +19,70 @@ if (CMAKE_CROSSCOMPILING)
         ${CMAKE_CURRENT_LIST_DIR}/drivers/cmsis/device
         ${CMAKE_CURRENT_LIST_DIR}/drivers/hal/inc
         ${CMAKE_CURRENT_LIST_DIR}/inc
+        ${CMAKE_CURRENT_LIST_DIR}/middleware/FreeRTOS/Source/include
+        ${CMAKE_CURRENT_LIST_DIR}/middleware/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1
         )
         
     set(LDSCRIPTS "${CMAKE_CURRENT_LIST_DIR}/ldscripts/gcc.ld")
 
-    set(Headers
-        "${CMAKE_CURRENT_LIST_DIR}/inc/board_config.h"
-        "${CMAKE_CURRENT_LIST_DIR}/inc/defines.h"
-        "${CMAKE_CURRENT_LIST_DIR}/inc/error_handling.h"
-        "${CMAKE_CURRENT_LIST_DIR}/inc/globals.h"
-        "${CMAKE_CURRENT_LIST_DIR}/inc/main.h"
-        "${CMAKE_CURRENT_LIST_DIR}/inc/stm32f7xx_hal_conf.h"
-        "${CMAKE_CURRENT_LIST_DIR}/inc/stm32f7xx_it.h"
-        "${CMAKE_CURRENT_LIST_DIR}/inc/stm32f7xx_nucleo_144_BSP.h"
-        "${CMAKE_CURRENT_LIST_DIR}/inc/usart.h"
-        )
+    # set(Headers
+    #     "${CMAKE_CURRENT_LIST_DIR}/inc/board_config.h"
+    #     "${CMAKE_CURRENT_LIST_DIR}/inc/defines.h"
+    #     "${CMAKE_CURRENT_LIST_DIR}/inc/error_handling.h"
+    #     "${CMAKE_CURRENT_LIST_DIR}/inc/globals.h"
+    #     "${CMAKE_CURRENT_LIST_DIR}/inc/main.h"
+    #     "${CMAKE_CURRENT_LIST_DIR}/inc/stm32f7xx_hal_conf.h"
+    #     "${CMAKE_CURRENT_LIST_DIR}/inc/stm32f7xx_it.h"
+    #     "${CMAKE_CURRENT_LIST_DIR}/inc/stm32f7xx_nucleo_144_BSP.h"
+    #     "${CMAKE_CURRENT_LIST_DIR}/inc/usart.h"
+
+    #     "${CMAKE_CURRENT_LIST_DIR}/inc/i2c.hpp"
+    #     "${CMAKE_CURRENT_LIST_DIR}/inc/imu.hpp"
+    #     "${CMAKE_CURRENT_LIST_DIR}/inc/usart.h"
+    #     )
 
     set(Sources
+    
+        "${CMAKE_CURRENT_LIST_DIR}/startup/startup_ARMCM7.S"
 
-    "${CMAKE_CURRENT_LIST_DIR}/src/main.cpp"
+        "${CMAKE_CURRENT_LIST_DIR}/src/main.cpp"
 
-    "${CMAKE_CURRENT_LIST_DIR}/startup/startup_ARMCM7.S"
-    "${CMAKE_CURRENT_LIST_DIR}/src/board_config.c"
-    "${CMAKE_CURRENT_LIST_DIR}/src/error_handling.c"
-    "${CMAKE_CURRENT_LIST_DIR}/src/system_stm32f7xx.c"
-    "${CMAKE_CURRENT_LIST_DIR}/src/stm32f7xx_it.c"
-    "${CMAKE_CURRENT_LIST_DIR}/src/stm32f7xx_hal_msp.c"
-    "${CMAKE_CURRENT_LIST_DIR}/src/usart.c"
-    "${CMAKE_CURRENT_LIST_DIR}/src/globals.c"
-    "${CMAKE_CURRENT_LIST_DIR}/src/retarget.c"                 
-    "${CMAKE_CURRENT_LIST_DIR}/drivers/hal/src/stm32f7xx_hal.c"    
-    "${CMAKE_CURRENT_LIST_DIR}/drivers/hal/src/stm32f7xx_hal_rcc.c"
-    "${CMAKE_CURRENT_LIST_DIR}/drivers/hal/src/stm32f7xx_hal_gpio.c"
-    "${CMAKE_CURRENT_LIST_DIR}/drivers/hal/src/stm32f7xx_hal_cortex.c"
-    "${CMAKE_CURRENT_LIST_DIR}/drivers/hal/src/stm32f7xx_hal_dma.c"
-    "${CMAKE_CURRENT_LIST_DIR}/drivers/hal/src/stm32f7xx_hal_uart.c"
-    "${CMAKE_CURRENT_LIST_DIR}/drivers/hal/src/stm32f7xx_hal_i2c.c"
+        "${CMAKE_CURRENT_LIST_DIR}/src/board_config.c"
+        "${CMAKE_CURRENT_LIST_DIR}/src/error_handling.c"
+        "${CMAKE_CURRENT_LIST_DIR}/src/system_stm32f7xx.c"
+        "${CMAKE_CURRENT_LIST_DIR}/src/stm32f7xx_it.c"
+        "${CMAKE_CURRENT_LIST_DIR}/src/stm32f7xx_hal_msp.c"
+        "${CMAKE_CURRENT_LIST_DIR}/src/usart.c"
+        "${CMAKE_CURRENT_LIST_DIR}/src/adc.c"            
+    
+    
+        "${CMAKE_CURRENT_LIST_DIR}/src/i2c.cpp"   
+        "${CMAKE_CURRENT_LIST_DIR}/src/imu.cpp"   
+        "${CMAKE_CURRENT_LIST_DIR}/src/pwm.cpp"   
+        
+        "${CMAKE_CURRENT_LIST_DIR}/middleware/FreeRTOS/Source/tasks.c"
+        "${CMAKE_CURRENT_LIST_DIR}/middleware/FreeRTOS/Source/queue.c"
+        "${CMAKE_CURRENT_LIST_DIR}/middleware/FreeRTOS/Source/list.c"
+        "${CMAKE_CURRENT_LIST_DIR}/middleware/FreeRTOS/Source/timers.c"
+        "${CMAKE_CURRENT_LIST_DIR}/middleware/FreeRTOS/Source/event_groups.c"
+        "${CMAKE_CURRENT_LIST_DIR}/middleware/FreeRTOS/Source/portable/MemMang/heap_2.c"
+        "${CMAKE_CURRENT_LIST_DIR}/middleware/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/port.c"
+
+        "${CMAKE_CURRENT_LIST_DIR}/drivers/hal/src/stm32f7xx_hal.c"    
+        "${CMAKE_CURRENT_LIST_DIR}/drivers/hal/src/stm32f7xx_hal_rcc.c"
+        "${CMAKE_CURRENT_LIST_DIR}/drivers/hal/src/stm32f7xx_hal_rcc_ex.c"
+        "${CMAKE_CURRENT_LIST_DIR}/drivers/hal/src/stm32f7xx_hal_gpio.c"
+        "${CMAKE_CURRENT_LIST_DIR}/drivers/hal/src/stm32f7xx_hal_cortex.c"
+        "${CMAKE_CURRENT_LIST_DIR}/drivers/hal/src/stm32f7xx_hal_dma.c"
+        "${CMAKE_CURRENT_LIST_DIR}/drivers/hal/src/stm32f7xx_hal_uart.c"
+        "${CMAKE_CURRENT_LIST_DIR}/drivers/hal/src/stm32f7xx_hal_i2c_ex.c"
+        "${CMAKE_CURRENT_LIST_DIR}/drivers/hal/src/stm32f7xx_hal_i2c.c"
+        "${CMAKE_CURRENT_LIST_DIR}/drivers/hal/src/stm32f7xx_hal_adc.c"
+        "${CMAKE_CURRENT_LIST_DIR}/drivers/hal/src/stm32f7xx_hal_tim.c"
+        "${CMAKE_CURRENT_LIST_DIR}/drivers/hal/src/stm32f7xx_hal_tim_ex.c"
     )
 
-    add_executable(${PROJECT_NAME} ${Sources} ${Headers})
+    add_executable(${PROJECT_NAME} ${Sources})
 
     target_link_libraries(${PROJECT_NAME}
                             -Wl,-Map=${PROJECT_NAME}.map
@@ -101,8 +126,17 @@ else()
         )
     endif()
 
+    # Set the compiler to the strictest mode, enable all warnings and make all warnings errors
+    # set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Werror")
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall")
+    # Force all libs to be staticly linked instead of dynamicly linked 
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
+
+    set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -O0 -g")
+    # Set compiler to maximum optimization and remove all debug code from the compiled file
+    set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} -O3 -s -DNDEBUG") 
+
     set(CMAKE_POSITION_INDEPENDENT_CODE ON)
-    set(DCMAKE_BUILD_TYPE DEBUG)
 
     include_directories (
                         "./inc"
@@ -116,10 +150,10 @@ else()
 
     set(Sources
         "${CMAKE_CURRENT_LIST_DIR}/src/circular_buffer.c"
+        
     )
 
     add_library(${PROJECT_NAME} STATIC ${Sources} ${Headers})
-    
     enable_testing()
 
 
