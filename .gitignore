@@ -5,7 +5,6 @@ CMakeCache.txt
 .cmake/
 cmake_install.cmake
 compile_commands.json
-Makefile
 CTestTestfile.cmake
 build_target/
 build/
