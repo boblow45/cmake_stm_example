@@ -1,5 +1,5 @@
-#ifndef __MAIN_H
-#define __MAIN_H
+#ifndef MAIN_H__
+#define MAIN_H__
 
 #ifdef __cplusplus
 extern "C"
